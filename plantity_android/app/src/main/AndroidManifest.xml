@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android">
         <activity
+            android:name=".PlantLogActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

@@ -3,7 +3,6 @@ package plantity.plantity_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import plantity.plantity_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+        binding.logBtn.setOnClickListener {
+            val intent = Intent(this, PlantLogActivity::class.java)
             startActivity(intent)
         }
     }

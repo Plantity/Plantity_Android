@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.244" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_guide_line.xml" value="0.264" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_guide_line_detail.xml" value="0.264" />
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/guideline_card_cell.xml" value="0.264" />
         <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.32592592592592595" />
       </map>
     </option>

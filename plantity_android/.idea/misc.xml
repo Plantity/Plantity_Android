@@ -4,7 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.32592592592592595" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/drawable/green_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/drawable/introbackground.xml" value="0.1235" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/drawable/test_button.xml" value="0.182" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/drawable/white_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout-v31/activity_splash.xml" value="0.34322916666666664" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_first.xml" value="0.34270833333333334" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_mypage.xml" value="0.33" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_setting.xml" value="0.75" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_setting2.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/activity_test.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_delete.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_edit_info.xml" value="0.33" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_like.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_logout.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_myplants.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_notice.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_report.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_send.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_setting.xml" value="0.32916666666666666" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_test1.xml" value="0.25" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_test2.xml" value="0.34375" />
+        <entry key="..\:/Users/skfl0/AndroidStudioProjects/Plantity_Android/plantity_android/app/src/main/res/layout/fragment_version.xml" value="0.1" />
       </map>
     </option>
   </component>

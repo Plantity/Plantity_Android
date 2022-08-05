@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Plantity_Android</string>
+    <string name="plant_a_tre">Plant a tree &amp; \nsave our planet</string>
+    <string name="login">로그인</string>
+    <string name="test_skip">테스트 건너뛰기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

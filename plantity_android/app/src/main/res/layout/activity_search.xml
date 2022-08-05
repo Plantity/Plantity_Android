@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view" />
+        app:layout_constraintTop_toBottomOf="@+id/search_view"
+        tools:layout="@layout/fragment_todays_plant"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

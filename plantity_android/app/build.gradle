@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
 }
-
 android {
     compileSdk 32
 
@@ -17,6 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures{
+        viewBinding = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,7 +39,7 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.cardview:cardview:1.0.0")
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'

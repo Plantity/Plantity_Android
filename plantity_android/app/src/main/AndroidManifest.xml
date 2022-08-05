@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android">
         <activity
+            android:name=".GuideLineDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GuideLineActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

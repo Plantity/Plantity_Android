@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android">
+
+        <activity
+            android:name=".GuideLineDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GuideLineActivity"
+            android:exported="false" />
         <activity
             android:name=".PlantLogActivity"
             android:exported="false" />
@@ -17,13 +24,20 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"/>
+            
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"/>
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FirstActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

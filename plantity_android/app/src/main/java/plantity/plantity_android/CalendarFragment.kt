@@ -13,11 +13,12 @@ import androidx.core.view.children
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
+import com.kizitonwose.calendarview.model.InDateStyle
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import com.kizitonwose.calendarview.utils.yearMonth
 import plantity.plantity_android.databinding.FragmentCalendarBinding
-import plantity.plantity_android.databinding.FragmentTodaysPlantBinding
 import plantity.plantity_android.databinding.ItemCalendarDayBinding
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -30,9 +31,8 @@ class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var plantLogActivity: PlantLogActivity
 
-    private val selectedDates = mutableSetOf<LocalDate>()
+    private var selectedDate: LocalDate? = null
     private val today = LocalDate.now()
-    private val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -56,13 +56,15 @@ class CalendarFragment : Fragment() {
 
         val daysOfWeek = DayOfWeek.values()
         val currentMonth = YearMonth.now()
-        Log.d("test", currentMonth.toString())
-        val startMonth = currentMonth.minusMonths(10)
-        val endMonth = currentMonth.plusMonths(10)
+        val startMonth = currentMonth.minusMonths(5)
+        val endMonth = currentMonth.plusMonths(5)
 
         with(binding){
-            calendarView.setup(startMonth, endMonth, daysOfWeek.first())
-            calendarView.scrollToMonth(currentMonth)  // 애니메이션 없음
+            selectedDate = today  // selectedDate는 today 날짜로 초기화
+            Log.d("test", "init selectedDate to $today")
+            calendarView.setup(startMonth, endMonth, DayOfWeek.SUNDAY)
+            Log.d("test", "scrolling to $currentMonth")
+            calendarView.scrollToDate(currentMonth.atDay(1))  // 애니메이션 없음
 //            legendLayout.root.children.forEachIndexed { index, view ->
 //                (view as TextView).apply {
 //                    text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH).uppercase(Locale.ENGLISH)
@@ -76,13 +78,14 @@ class CalendarFragment : Fragment() {
         class DayViewContainer(view: View) : ViewContainer(view) {
             // will be set when this container is bound. See the DayBinder.
             private val calendarView = binding.calendarView
-            private var selectedDate: LocalDate? = null
             val textView = ItemCalendarDayBinding.bind(view).itemCalendarDayText
 
             lateinit var day: CalendarDay
 
             init{
+                // 날짜 클릭 이벤트
                 view.setOnClickListener{
+                    Log.d("test", "selectedDate:"+selectedDate.toString())
                     // Check the day owner as we do not want to select in or out dates.
                     if(day.owner == DayOwner.THIS_MONTH){
                         val currentSelection = selectedDate
@@ -94,6 +97,7 @@ class CalendarFragment : Fragment() {
                             calendarView.notifyDateChanged(currentSelection)
                         }
                         else{
+                            // 새로 선택한 날짜이면 새로 선택한 날짜로 변경
                             selectedDate = day.date
                             // 새로 선택된 날짜 reload -> dayBinder 호출, selection background 추가하도록
                             calendarView.notifyDateChanged(day.date)
@@ -118,25 +122,42 @@ class CalendarFragment : Fragment() {
         }
 
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
+            // called only when a new container is needed
             override fun create(view: View) = DayViewContainer(view)
+
+            // called every time we need to reuse a container
             override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.day = day
+                container.day = day  // calendar day for this container
+//                Log.d("test", day.toString())
                 val textView = container.textView
                 textView.text = day.date.dayOfMonth.toString()
+
                 if(day.owner == DayOwner.THIS_MONTH){
-                    when{
-                        selectedDates.contains(day.date) -> {
-                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
-                        }
-                        today == day.date -> {
-                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
-                        }
-                        else -> {
-                            textView.background = null
-                        }
+                    Log.d("test", "selectedDate: $selectedDate")
+                    Log.d("test", "day.date: ${day.date}")
+                    Log.d("test", "selectedDate==day.date: ${selectedDate == day.date}")
+                    Log.d("test", "selectedDate == null: ${selectedDate == null}")
+                    textView.setTextColor(Color.BLACK)
+                    textView.visibility = View.VISIBLE  // ?
+
+                    if(selectedDate == day.date){
+                        Log.d("test", "selectedDate==day.date")
+                        textView.setBackgroundResource(R.drawable.calendar_selected_day)
+                    }
+                    else if(today == day.date){
+                        textView.setBackgroundResource(R.drawable.calendar_selected_day)
+                    }
+                    else if(selectedDate == null) {
+                        Log.d("test", "else if set ${textView.text} bg to null")
+                        textView.background = null
+                    }
+                    else{
+                        Log.d("test", "set ${textView.text} bg to null")
+                        textView.background = null
                     }
                 }
                 else {
+                    textView.setTextColor(Color.GRAY)
                     textView.background = null
                 }
             }

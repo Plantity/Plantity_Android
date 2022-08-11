@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.children
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -23,7 +22,6 @@ import plantity.plantity_android.databinding.ItemCalendarDayBinding
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
 
@@ -54,17 +52,17 @@ class CalendarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalendarBinding.bind(view)
 
-        val daysOfWeek = DayOfWeek.values()
+//        val daysOfWeek = DayOfWeek.values()
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(5)
         val endMonth = currentMonth.plusMonths(5)
 
         with(binding){
-            selectedDate = today  // selectedDate는 today 날짜로 초기화
+            //selectedDate = today  // selectedDate는 today 날짜로 초기화 -> today는 계속 선택layout 적용된 상태가 됨.
             Log.d("test", "init selectedDate to $today")
             calendarView.setup(startMonth, endMonth, DayOfWeek.SUNDAY)
             Log.d("test", "scrolling to $currentMonth")
-            calendarView.scrollToDate(currentMonth.atDay(1))  // 애니메이션 없음
+            calendarView.scrollToDate(currentMonth.atDay(today.dayOfMonth))  // 애니메이션 없음
 //            legendLayout.root.children.forEachIndexed { index, view ->
 //                (view as TextView).apply {
 //                    text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH).uppercase(Locale.ENGLISH)
@@ -85,7 +83,7 @@ class CalendarFragment : Fragment() {
             init{
                 // 날짜 클릭 이벤트
                 view.setOnClickListener{
-                    Log.d("test", "selectedDate:"+selectedDate.toString())
+                    Log.d("test", "date clicked, selectedDate:"+selectedDate.toString())
                     // Check the day owner as we do not want to select in or out dates.
                     if(day.owner == DayOwner.THIS_MONTH){
                         val currentSelection = selectedDate
@@ -96,8 +94,8 @@ class CalendarFragment : Fragment() {
                             // and we can REMOVE the selection background.
                             calendarView.notifyDateChanged(currentSelection)
                         }
+                        // 새로 선택한 날짜이면 새로 선택한 날짜로 변경
                         else{
-                            // 새로 선택한 날짜이면 새로 선택한 날짜로 변경
                             selectedDate = day.date
                             // 새로 선택된 날짜 reload -> dayBinder 호출, selection background 추가하도록
                             calendarView.notifyDateChanged(day.date)
@@ -128,7 +126,6 @@ class CalendarFragment : Fragment() {
             // called every time we need to reuse a container
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.day = day  // calendar day for this container
-//                Log.d("test", day.toString())
                 val textView = container.textView
                 textView.text = day.date.dayOfMonth.toString()
 
@@ -138,23 +135,31 @@ class CalendarFragment : Fragment() {
                     Log.d("test", "selectedDate==day.date: ${selectedDate == day.date}")
                     Log.d("test", "selectedDate == null: ${selectedDate == null}")
                     textView.setTextColor(Color.BLACK)
-                    textView.visibility = View.VISIBLE  // ?
 
-                    if(selectedDate == day.date){
-                        Log.d("test", "selectedDate==day.date")
+                    if(selectedDate == day.date)
                         textView.setBackgroundResource(R.drawable.calendar_selected_day)
-                    }
-                    else if(today == day.date){
-                        textView.setBackgroundResource(R.drawable.calendar_selected_day)
-                    }
-                    else if(selectedDate == null) {
-                        Log.d("test", "else if set ${textView.text} bg to null")
+                    else
                         textView.background = null
-                    }
-                    else{
-                        Log.d("test", "set ${textView.text} bg to null")
-                        textView.background = null
-                    }
+
+//                    if(selectedDate == null){
+//                        Log.d("test", "set ${textView.text} bg to null")
+//                        textView.background = null
+//                    }
+//                    else{
+//                        if(selectedDate == day.date){
+//                            Log.d("test", "selectedDate==day.date")
+//                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
+//                        }
+////                        else if(today == day.date){
+////                            Log.d("test", "today==day.date")
+////                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
+////                        }
+//                        else{
+//                            Log.d("test", "set ${textView.text} bg to null")
+//                            textView.background = null
+//                        }
+//                    }
+
                 }
                 else {
                     textView.setTextColor(Color.GRAY)

@@ -13,9 +13,12 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
-        Login_button.setOnClickListener{
+        test_button.setOnClickListener{
+            val intent = Intent(this, MypageActivity::class.java)
+            startActivity(intent)
         }
-        test_skip_button.setOnClickListener{
+        login_button.setOnClickListener{
+
         }
     }
 

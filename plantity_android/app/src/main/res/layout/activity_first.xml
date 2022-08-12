@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/logo"
         android:elevation="22dp"
-        app:layout_constraintBottom_toTopOf="@+id/Login_button"
+        app:layout_constraintBottom_toTopOf="@+id/test_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plant_a_tre"
@@ -35,28 +35,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Login_button"
+        android:id="@+id/test_button"
         android:layout_width="325dp"
         android:layout_height="66dp"
         android:layout_centerVertical="true"
         android:layout_marginBottom="24dp"
         android:background="@drawable/green_button"
-        android:elevation="1dp"
-        android:text="@string/login"
+        android:text="1분만에 나에게 맞는 식물 추천받기"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/test_skip_button"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/test_skip_button"
+        android:id="@+id/login_button"
         android:layout_width="325dp"
         android:layout_height="66dp"
         android:layout_centerVertical="true"
         android:layout_marginBottom="32dp"
         android:background="@drawable/white_button"
         android:elevation="1dp"
-        android:text="@string/test_skip"
+        android:text="로그인"
         android:textColor="#545151"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

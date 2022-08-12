@@ -39,6 +39,7 @@
             android:name=".FirstActivity"
             android:exported="true" />
 
+
         <activity
             android:name=".SettingActivity"
             android:exported="true" />
@@ -46,6 +47,7 @@
         <activity
             android:name=".MypageActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>

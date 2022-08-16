@@ -6,37 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="323dp"
+    <ImageView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:background="@drawable/searchbar_frame"
-        android:gravity="center"
-        app:iconifiedByDefault="false"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/searchbar_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="식물 이름">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- <ImageView
-            android:id="@+id/imgCamera"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:src="@drawable/camera_icon"
-            app:layout_constraintEnd_toEndOf="@+id/search_view"
-            app:layout_constraintStart_toStartOf="@+id/search_view"
-            app:layout_constraintTop_toTopOf="parent" /> -->
-    </androidx.appcompat.widget.SearchView>
+    <AutoCompleteTextView
+        android:id="@+id/searchInput"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="40dp"
+        android:completionThreshold="1"
+        android:imeOptions="actionGo"
+        android:background="@android:color/transparent"
+        android:hint="식물 이름"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="@+id/searchView" />
+
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="plantity.plantity_android.TodaysPlantFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
         tools:layout="@layout/fragment_todays_plant"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

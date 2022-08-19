@@ -1,4 +1,4 @@
-package plantity.plantity_android
+package plantity.plantity_android.guideline
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

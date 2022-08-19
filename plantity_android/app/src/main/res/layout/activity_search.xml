@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".search.SearchActivity">
 
     <ImageView
         android:id="@+id/searchView"
@@ -45,7 +45,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="plantity.plantity_android.TodaysPlantFragment"
+        android:name="plantity.plantity_android.search.TodaysPlantFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

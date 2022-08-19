@@ -1,4 +1,4 @@
-package plantity.plantity_android
+package plantity.plantity_android.plantlogs
 
 import android.content.Context
 import android.graphics.Color
@@ -12,18 +12,15 @@ import android.widget.TextView
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
-import com.kizitonwose.calendarview.model.InDateStyle
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import com.kizitonwose.calendarview.utils.yearMonth
+import plantity.plantity_android.R
 import plantity.plantity_android.databinding.FragmentCalendarBinding
 import plantity.plantity_android.databinding.ItemCalendarDayBinding
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.TextStyle
-import java.util.*
 
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding

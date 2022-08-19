@@ -1,11 +1,11 @@
-package plantity.plantity_android
+package plantity.plantity_android.mypages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import kotlinx.android.synthetic.main.activity_first.*
 import kotlinx.android.synthetic.main.activity_mypage.*
+import plantity.plantity_android.R
+import plantity.plantity_android.settings.SettingActivity
 
 class MypageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

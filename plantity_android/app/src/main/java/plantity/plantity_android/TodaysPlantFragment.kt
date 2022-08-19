@@ -15,6 +15,8 @@ class TodaysPlantFragment : Fragment() {
     lateinit var binding: FragmentTodaysPlantBinding
     lateinit var searchActivity: SearchActivity
 
+    var isLiked: Boolean = false
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -28,6 +30,19 @@ class TodaysPlantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTodaysPlantBinding.inflate(inflater, container, false)
+
+        binding.heartIcon.setOnClickListener {
+            // 좋아요 취소
+            if(isLiked){
+                binding.heartIcon.setImageResource(R.drawable.ic_heart)
+                isLiked = false
+            }
+            // 좋아요
+            else {
+                binding.heartIcon.setImageResource(R.drawable.ic_heart_full)
+                isLiked = true
+            }
+        }
         return binding.root
     }
 }

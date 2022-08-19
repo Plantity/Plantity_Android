@@ -1,9 +1,11 @@
-package plantity.plantity_android
+package plantity.plantity_android.starts
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_first.*
+import plantity.plantity_android.mypages.MypageActivity
+import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity() {

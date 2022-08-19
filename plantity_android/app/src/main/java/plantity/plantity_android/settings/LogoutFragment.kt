@@ -1,13 +1,13 @@
-package plantity.plantity_android
+package plantity.plantity_android.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import plantity.plantity_android.R
 
-
-class VersionFragment : Fragment() {
+class LogoutFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +19,6 @@ class VersionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_version, container, false)
+        return inflater.inflate(R.layout.fragment_logout, container, false)
     }
 }

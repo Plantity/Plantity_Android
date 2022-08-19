@@ -1,14 +1,8 @@
-package plantity.plantity_android
+package plantity.plantity_android.settings
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_setting.*
+import plantity.plantity_android.R
 
 class Setting2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

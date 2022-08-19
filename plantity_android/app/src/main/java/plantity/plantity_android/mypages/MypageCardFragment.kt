@@ -1,16 +1,17 @@
-package plantity.plantity_android
+package plantity.plantity_android.mypages
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import plantity.plantity_android.R
 
-class EditInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+class MypageCardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -18,7 +19,8 @@ class EditInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_info, container, false)
+        return inflater.inflate(R.layout.fragment_mypage_card, container, false)
+
     }
 
 }

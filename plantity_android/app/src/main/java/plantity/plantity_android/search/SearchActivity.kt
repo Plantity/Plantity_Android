@@ -1,4 +1,4 @@
-package plantity.plantity_android
+package plantity.plantity_android.search
 
 import android.app.SearchManager
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {

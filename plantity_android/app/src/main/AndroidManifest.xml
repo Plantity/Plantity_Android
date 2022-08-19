@@ -11,16 +11,16 @@
         android:theme="@style/Theme.Plantity_Android">
 
         <activity
-            android:name=".GuideLineDetailActivity"
+            android:name=".guideline.GuideLineDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".GuideLineActivity"
+            android:name=".guideline.GuideLineActivity"
             android:exported="false" />
         <activity
-            android:name=".PlantLogActivity"
+            android:name=".plantlogs.PlantLogActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".search.SearchActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -29,12 +29,12 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
         </activity>
             
         <activity
-            android:name=".SplashActivity"
+            android:name=".starts.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
         </activity>
 
         <activity
-            android:name=".FirstActivity"
+            android:name=".starts.FirstActivity"
             android:exported="true" />
     </application>
 

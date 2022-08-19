@@ -1,9 +1,10 @@
-package plantity.plantity_android
+package plantity.plantity_android.settings
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_setting.*
+import plantity.plantity_android.R
 
 class SettingActivity : AppCompatActivity() {
 

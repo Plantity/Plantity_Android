@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    tools:context=".CalendarFragment">
+    tools:context=".plantlogs.CalendarFragment">
 
     <include
         android:id="@+id/calHeaderLayout"

@@ -45,7 +45,6 @@ class PlantLogActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.calFragmentContainer, calendarFragment)
         transaction.commit()
-        Log.d("test", "after commit")
     }
 }
 
@@ -60,7 +59,7 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
     // 한 화면에 보이는 개수만큼 호출
     override fun onBindViewHolder(holder: Holder, position: Int) {
         // 사용할 데이터 꺼내기
-        val item = items.get(position)
+        val item = items[position]
         // holder에 데이터 전달
         holder.setData(item)
     }

@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/infolinearLayout"
             android:layout_width="326dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -60,13 +60,14 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gd_recyclerView"
             android:layout_width="326dp"
             android:layout_height="500dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/infolinearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

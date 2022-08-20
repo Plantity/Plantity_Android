@@ -48,7 +48,7 @@
                     android:id="@+id/gd_card_context"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Explanation" />
+                    android:text="Explanation \n본 설명은 샘플용 텍스트입니다. \n옆의 이미지는 샘플용 이미지입니다." />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="guideLineTitle">
+        <item>실내식물 가지치기 하는 법</item>
+        <item>과습된 식물 살리는 방법</item>
+        <item>실내에서 선인장 기르는 방법</item>
+        <item>식물 건강하게 키우는 법</item>
+        <item>실내식물 관리하는 방법</item>
+        <item>다육이 잎꽂이 하는 방법</item>
+        <item>분갈이 하는 방법</item>
+        <item>저면관수 하는 방법</item>
+    </string-array>
+
+    <string-array name="guideLineDescription">
+        <item>Item 1 입니다.</item>
+        <item>Item 2 입니다.</item>
+        <item>Item 3 입니다.</item>
+        <item>Item 4 입니다.</item>
+        <item>Item 5 입니다.</item>
+        <item>Item 6 입니다.</item>
+        <item>Item 7 입니다.</item>
+        <item>Item 8 입니다.</item>
+    </string-array>
+
+
+</resources>

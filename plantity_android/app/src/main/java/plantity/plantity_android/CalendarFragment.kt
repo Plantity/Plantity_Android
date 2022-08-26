@@ -1,4 +1,4 @@
-package plantity.plantity_android
+package plantity.plantity_android.plantlogs
 
 import android.content.Context
 import android.graphics.Color

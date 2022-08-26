@@ -51,6 +51,29 @@
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/mipmap-anydpi-v26/ic_plant_log_image_round.xml" value="0.1175" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/xml/searchable.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/kitae/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/guide_icon.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/guide_icon_color.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/log_icon.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/log_icon_color.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/main_icon.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/main_icon_color.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/mypage_icon_color.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/search_icon.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable-v24/search_icon_color.xml" value="0.1845" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable/green_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable/intro_ver2_.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable/test_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/drawable/white_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_first.xml" value="0.2" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_guide_line.xml" value="0.34375" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.16691995947315097" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_mypage.xml" value="0.16691995947315097" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_plant_log.xml" value="0.34375" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/activity_search.xml" value="0.34375" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_like.xml" value="0.16691995947315097" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_mypage_card.xml" value="0.16691995947315097" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_myplants.xml" value="0.16691995947315097" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_nav_bar.xml" value="0.5" />
       </map>
     </option>
   </component>

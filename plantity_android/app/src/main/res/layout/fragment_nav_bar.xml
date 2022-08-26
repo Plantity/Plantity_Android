@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".NavBarFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/nav_guide"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginRight="24dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/guide_icon" />
+
+        <Button
+            android:id="@+id/nav_search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/search_icon" />
+
+        <Button
+            android:id="@+id/nav_main"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/main_icon" />
+
+        <Button
+            android:id="@+id/nav_log"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/log_icon" />
+
+        <Button
+            android:id="@+id/nav_mypage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="24dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/mypage_icon" />
+    </LinearLayout>
+
+</FrameLayout>

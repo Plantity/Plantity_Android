@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android">
 
@@ -45,6 +45,18 @@
         <activity
             android:name=".starts.FirstActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".settings.SettingActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".mypages.MypageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".settings.Setting2Activity"
+            android:exported="true" />
+
     </application>
 
 

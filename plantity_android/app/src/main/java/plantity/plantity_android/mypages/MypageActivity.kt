@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_mypage.*
+import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.settings.SettingActivity
 
@@ -17,7 +18,7 @@ class MypageActivity : AppCompatActivity() {
             startActivity(intent)
         }
         setFragment()
-
+        setNavBarFragment("mypage")
     }
 
     private fun setFragment(){
@@ -35,5 +36,16 @@ class MypageActivity : AppCompatActivity() {
         val transaction3 = supportFragmentManager.beginTransaction()
         transaction3.add(R.id.like,likeFragment)
         transaction3.commit()
+
+
+    }
+    fun setNavBarFragment(title:String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        navBarFragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.nav_bar,navBarFragment)
+        transaction.commit()
     }
 }

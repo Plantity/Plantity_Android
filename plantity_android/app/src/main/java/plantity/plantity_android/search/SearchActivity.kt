@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivitySearchBinding
 
@@ -26,6 +27,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setFragment()
+        setNavBarFragment("search")
+
 
         // 사용자가 검색 대화상자 또는 위젯에서 검색을 실행하면 검색 가능 활동이 시작되고 이 활동에 ACTION_SEARCH 인텐트가 전송됨
         // 이 인텐트는 QUERY 문자열 extra에 검색어를 포함함 -> 활동이 시작될 때 이 인텐트를 확인하고 문자열을 추출
@@ -81,11 +84,24 @@ class SearchActivity : AppCompatActivity() {
         transaction.add(R.id.fragmentContainerView, todaysPlantFragment)
 //        Log.d("test", "after add")
         transaction.commit()
+
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        val transaction2 = supportFragmentManager.beginTransaction()
+        transaction2.add(R.id.nav_bar,navBarFragment)
+        transaction2.commit()
     }
 
     private fun doSearch(query: String?){
 
     }
 
-
+    fun setNavBarFragment(title:String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        navBarFragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.nav_bar,navBarFragment)
+        transaction.commit()
+    }
 }

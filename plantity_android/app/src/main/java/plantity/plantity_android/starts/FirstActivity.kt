@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_first.*
 import plantity.plantity_android.mypages.MypageActivity
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityFirstBinding
+import plantity.plantity_android.main.MainActivity
 
 class FirstActivity : AppCompatActivity() {
     val binding by lazy{ActivityFirstBinding.inflate(layoutInflater)}
@@ -20,7 +21,8 @@ class FirstActivity : AppCompatActivity() {
             startActivity(intent)
         }
         login_button.setOnClickListener{
-
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

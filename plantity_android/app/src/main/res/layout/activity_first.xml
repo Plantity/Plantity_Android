@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/intro">
+
+
+    <View
+        android:id="@+id/colour_pick"
+        android:layout_width="241dp"
+        android:layout_height="351dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/logo"
+        android:elevation="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/test_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plant_a_tre"
+        app:layout_constraintVertical_bias="0.512" />
+
+    <TextView
+        android:id="@+id/plant_a_tre"
+        android:layout_width="247dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal|top"
+        android:text="@string/plant_a_tre"
+        android:textAppearance="@style/plant_a_tre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="325dp"
+        android:layout_height="66dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/green_button"
+        android:elevation="2dp"
+        android:text="1분만에 나에게 맞는 식물 추천받기"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="325dp"
+        android:layout_height="66dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/white_button"
+        android:elevation="1dp"
+        android:text="로그인"
+        android:textColor="#545151"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

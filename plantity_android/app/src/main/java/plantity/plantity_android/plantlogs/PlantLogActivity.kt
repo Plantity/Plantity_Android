@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
+import plantity.plantity_android.NavBarFragment
+import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
 import plantity.plantity_android.databinding.PlantItemBinding
 
@@ -19,7 +21,7 @@ class PlantLogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setFragment()
-
+        setNavBarFragment("log")
         // adapter 생성
         val cardViewAdapter = CardViewAdapter()
         // 화면의 viewPager와 연결
@@ -43,6 +45,21 @@ class PlantLogActivity : AppCompatActivity() {
     private fun setFragment(){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.calFragmentContainer, calendarFragment)
+        transaction.commit()
+
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        val transaction2 = supportFragmentManager.beginTransaction()
+        transaction2.add(R.id.nav_bar,navBarFragment)
+        transaction2.commit()
+    }
+
+    fun setNavBarFragment(title:String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        navBarFragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.nav_bar,navBarFragment)
         transaction.commit()
     }
 }

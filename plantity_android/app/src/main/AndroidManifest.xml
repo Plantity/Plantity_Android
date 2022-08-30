@@ -4,26 +4,66 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android">
+
         <activity
-            android:name=".PlantLogActivity"
+            android:name=".guideline.GuideLineDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".guideline.GuideLineActivity"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".plantlogs.PlantLogActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".search.SearchActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true">
+        </activity>
+            
+        <activity
+            android:name=".starts.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".starts.FirstActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".settings.SettingActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".mypages.MypageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".settings.Setting2Activity"
+            android:exported="true" />
+
     </application>
+
+
 
 </manifest>

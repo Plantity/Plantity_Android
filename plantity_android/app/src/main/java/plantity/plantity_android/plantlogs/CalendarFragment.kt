@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
-import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import kotlinx.android.synthetic.main.fragment_calendar.*
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.FragmentCalendarBinding
 import plantity.plantity_android.databinding.ItemCalendarDayBinding
@@ -22,7 +20,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
 import java.util.*
 
 class CalendarFragment : Fragment() {
@@ -56,7 +53,7 @@ class CalendarFragment : Fragment() {
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(5)
         val endMonth = currentMonth.plusMonths(5)
-        val inflater: LayoutInflater
+        var inflater: LayoutInflater
         var logDetailView: View
 
         with(binding){
@@ -163,7 +160,9 @@ class CalendarFragment : Fragment() {
             // dates overflow and cells in one index can belong to different
             // months/years.
             val firstDate = it.weekDays.first().first().date
+            //val firstDate = it.weekDays.get(0).get(0).date
             val lastDate = it.weekDays.last().last().date
+            //val lastDate = it.weekDays[last].
             if (firstDate.yearMonth == lastDate.yearMonth) {
                 binding.textCalendarYear.text = firstDate.yearMonth.year.toString()
                 binding.textCalendarMonth.text = monthTitleFormatter.format(firstDate)

@@ -8,7 +8,12 @@
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_guide_line.xml" value="0.264" />
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_guide_line_detail.xml" value="0.264" />
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_mypage.xml" value="0.25364583333333335" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_plant_log.xml" value="0.25364583333333335" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/activity_search.xml" value="0.25364583333333335" />
         <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/fragment_myplants.xml" value="0.25364583333333335" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/guideline_card_cell.xml" value="0.25364583333333335" />
+        <entry key="..\:/Dev/plantity_Android/plantity_android/app/src/main/res/layout/plant_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/drawable/calendar_header_bg.xml" value="0.1515" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/drawable/calendar_selected_day.xml" value="0.1975" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/drawable/ic_camera_icon.xml" value="0.1955" />
@@ -74,6 +79,23 @@
         <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_mypage_card.xml" value="0.16691995947315097" />
         <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_myplants.xml" value="0.16691995947315097" />
         <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android3/plantity_android/app/src/main/res/layout/fragment_nav_bar.xml" value="0.5" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable-v24/log_icon.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/add_plant_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/green_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/ic_heart.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/ic_heart_full.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/mypage_progressbar.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/rounded_corner.xml" value="0.2195" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/test_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/drawable/white_button.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/activity_first.xml" value="0.34375" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/activity_plant_detail.xml" value="0.33" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/activity_plant_log.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/fragment_mypage_card.xml" value="0.1" />
+        <entry key="..\:/Users/skfl0/StudioProjects/Plantity_Android4/plantity_android/app/src/main/res/layout/fragment_todays_plant.xml" value="0.34375" />
       </map>
     </option>
   </component>

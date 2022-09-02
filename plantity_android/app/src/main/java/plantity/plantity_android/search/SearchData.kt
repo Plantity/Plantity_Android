@@ -1,8 +1,10 @@
 package plantity.plantity_android.search
 
-data class SearchData(val isSuccess: Boolean, val statusCode: Int, val statusMessage: String, val result: SearchResult)
+import java.io.Serializable
 
-data class SearchResult(val content: ArrayList<Content>)
+data class SearchData(val isSuccess: Boolean, val statusCode: Int, val statusMessage: String, val result: SearchResult): Serializable
+
+data class SearchResult(val content: ArrayList<Content>): Serializable
 
 data class Content(
     val plantId: Int,
@@ -18,4 +20,6 @@ data class Content(
     val watercycleSprngCodeNm: String,  // 물 주기
     val managelevelCode: String,  // 관리 수준 코드 - 난이도
     // val plantFollowings: ArrayList<Int>  -> 서버 아직 구현 안된듯?
-)
+): Serializable {
+    constructor(): this(0, "","","","","","","","","","", "")
+}

@@ -12,6 +12,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/searchbar_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/searchFragmentContainer"
         android:name="plantity.plantity_android.search.TodaysPlantFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

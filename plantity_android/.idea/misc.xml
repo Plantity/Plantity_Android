@@ -46,7 +46,8 @@
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log.xml" value="0.4" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log_caring.xml" value="0.25364583333333335" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log_repotting.xml" value="0.25364583333333335" />
-        <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log_watering.xml" value="0.25364583333333335" />
+        <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log_sunlight.xml" value="0.4" />
+        <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/item_plant_log_watering.xml" value="0.4" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/plant_item.xml" value="0.4" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/shape_circle_gray.xml" value="0.25364583333333335" />
         <entry key="..\:/Plantity/Plantity_Android/plantity_android/app/src/main/res/layout/view_search_list.xml" value="0.264" />

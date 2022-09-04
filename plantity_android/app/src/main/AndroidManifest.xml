@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android"
         android:usesCleartextTraffic="true"> <!-- http로 시작하는 사이트 접근 위해 -->
-
+        
+        <activity
+            android:name=".PlantDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".guideline.GuideLineDetailActivity"
             android:exported="false" />
@@ -34,40 +37,35 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".main.MainActivity"
-            android:exported="true">
-        </activity>
-            
+            android:exported="true"></activity>
         <activity
             android:name=".starts.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".starts.FirstActivity"
             android:exported="true" />
-
         <activity
             android:name=".settings.SettingActivity"
             android:exported="true" />
-
         <activity
             android:name=".mypages.MypageActivity"
             android:exported="true" />
         <activity
             android:name=".settings.Setting2Activity"
             android:exported="true" />
-
     </application>
-
-
 
 </manifest>

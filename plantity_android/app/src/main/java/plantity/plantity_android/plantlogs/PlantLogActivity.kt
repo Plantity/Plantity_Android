@@ -10,8 +10,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
-import plantity.plantity_android.databinding.PlantItemBinding
 import java.util.*
+import plantity.plantity_android.databinding.ItemPlantCardBinding
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
@@ -44,9 +44,9 @@ class PlantLogActivity : AppCompatActivity() {
     }
 
     private fun setFragment(){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.calFragmentContainer, calendarFragment)
-        transaction.commit()
+//        val transaction = supportFragmentManager.beginTransaction()
+//        transaction.add(R.id.calFragmentContainer, calendarFragment)
+//        transaction.commit()
 
         val navBarFragment : NavBarFragment = NavBarFragment()
         val transaction2 = supportFragmentManager.beginTransaction()
@@ -69,7 +69,7 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         // 표시되는 view의 정보를 넘겨줘야 해서 3개의 인자를 전달
-        val binding = PlantItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPlantCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
@@ -85,7 +85,7 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
         return items.size
     }
 
-    class Holder(val binding: PlantItemBinding): RecyclerView.ViewHolder(binding.root){
+    class Holder(val binding: ItemPlantCardBinding): RecyclerView.ViewHolder(binding.root){
         lateinit var currentItem:String
 
         fun setData(data:String){

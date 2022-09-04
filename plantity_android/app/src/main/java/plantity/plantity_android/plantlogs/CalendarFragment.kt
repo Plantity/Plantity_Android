@@ -12,7 +12,7 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import kotlinx.android.synthetic.main.fragment_calendar.*
+import com.kizitonwose.calendarview.utils.yearMonth
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.FragmentCalendarBinding
 import plantity.plantity_android.databinding.ItemCalendarDayBinding
@@ -20,7 +20,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding

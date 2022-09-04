@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface SearchService {
-    @GET("")
-    fun loadPlants(@Query("page") page: Int): Call<SearchData>
+    @GET("plant")
+    fun loadPlants(@Query("page") page: Int, @Query("size") size: Int): Call<SearchData>
 }

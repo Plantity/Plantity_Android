@@ -2,9 +2,9 @@ package plantity.plantity_android.search
 
 import java.io.Serializable
 
-data class SearchData(val isSuccess: Boolean, val statusCode: Int, val statusMessage: String, val result: SearchResult): Serializable
+data class SearchData(val isSuccess: Boolean, val code: Int, val message: String, val result: SearchResult): Serializable
 
-data class SearchResult(val content: ArrayList<Content>): Serializable
+data class SearchResult(val content: ArrayList<Content>, val last: Boolean): Serializable
 
 data class Content(
     val plantId: Int,
@@ -19,7 +19,7 @@ data class Content(
     val flclrCodeNm: String,  // 꽃 색
     val watercycleSprngCodeNm: String,  // 물 주기
     val managelevelCode: String,  // 관리 수준 코드 - 난이도
-    // val plantFollowings: ArrayList<Int>  -> 서버 아직 구현 안된듯?
+    val plantFollowings: ArrayList<Int>  // 찜한 사람..?
 ): Serializable {
-    constructor(): this(0, "","","","","","","","","","", "")
-}
+   //constructor(): this(0, "","","","","","","","","","", "", ArrayList<Int>())
+}  // 받아온 데이터의 plantId가 전부 0임... -> constructor() 지우기

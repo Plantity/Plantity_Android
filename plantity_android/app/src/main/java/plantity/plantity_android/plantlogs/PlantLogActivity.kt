@@ -11,6 +11,7 @@ import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
 import plantity.plantity_android.databinding.PlantItemBinding
+import java.util.*
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }

@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/plantImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_corner"
+                android:clipToOutline="true"
+                android:src="@drawable/ic_plant_log_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plantType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="식물 종류"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                app:layout_constraintStart_toEndOf="@+id/plantImg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/difficultyRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="난이도: ⭐⭐⭐"
+                android:textSize="12dp"
+                android:textColor="@color/gray"
+                app:layout_constraintStart_toEndOf="@+id/plantImg"
+                app:layout_constraintTop_toBottomOf="@+id/plantType" />
+
+            <TextView
+                android:id="@+id/plantDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+
+                android:maxWidth="160dp"
+                android:maxLines="3"
+                android:text="식물 소개 ~~~~~~~~~~~간략하게 어쩌구 저쩌구 길어진다 길어져................"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/plantImg"
+                app:layout_constraintTop_toBottomOf="@+id/difficultyRate" />
+
+            <TextView
+                android:id="@+id/hashtags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="#플랜테리어 #인기식물"
+                android:textSize="10dp"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/plantImg" />
+
+            <ImageView
+                android:id="@+id/heartIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_heart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

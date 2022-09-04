@@ -2,13 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="plantity.plantity_android">
 
+    <!--서버 통신 위한 인터넷 권한-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo1"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Plantity_Android">
+        android:theme="@style/Theme.Plantity_Android"
+        android:usesCleartextTraffic="true"> <!-- http로 시작하는 사이트 접근 위해 -->
+        
         <activity
             android:name=".PlantDetailActivity"
             android:exported="false" />

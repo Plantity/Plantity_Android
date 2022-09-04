@@ -62,7 +62,7 @@
         android:id="@+id/todaysPlantIntro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="간략한 식물소개"
+        android:text="간략한 식물소개~~~~~~~~~~~~~###### 이 식물은 어쩌구저쩌구입니다~~~~~~~~~~~~~~~~~~~~~~~~"
         android:textColor="#848484"
         android:textSize="13dp"
         android:layout_marginTop="10dp"

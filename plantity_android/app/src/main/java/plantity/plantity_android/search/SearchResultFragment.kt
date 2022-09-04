@@ -6,23 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.FragmentSearchResultBinding
 import plantity.plantity_android.databinding.FragmentTodaysPlantBinding
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchResultFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchResultFragment : Fragment() {
     lateinit var binding: FragmentSearchResultBinding
     lateinit var searchActivity: SearchActivity
+    lateinit var searchAdapter: SearchAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,10 +27,6 @@ class SearchResultFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
 
     }
 
@@ -46,16 +36,18 @@ class SearchResultFragment : Fragment() {
     ): View? {
         binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
-        val resultData: Content
+        val plantsList: MutableList<Content>
         val bundle = Bundle(arguments)  //번들 받기
-        resultData = bundle.get("searchResult") as Content
+        plantsList = bundle.get("searchResult") as MutableList<Content>
 
-        //var result = arguments?.getBundle("searchResult")
-        Toast.makeText(context, "in fragment, data is ${resultData.cntntsSj}", Toast.LENGTH_SHORT).show()
+        searchAdapter = SearchAdapter(plantsList)  // 어댑터
+        binding.searchListRecyclerView.adapter = searchAdapter
+        binding.searchListRecyclerView.layoutManager = LinearLayoutManager(searchActivity)  // context로 this가 아님?
+
+//        Toast.makeText(context, "in fragment, data is ${resultData.cntntsSj}", Toast.LENGTH_SHORT).show()
 
         with(binding){
-            plantType.text = resultData.cntntsSj
-            plantDescription.text = resultData.adviseInfo
+
 //            heartIcon.setOnClickListener {
 //                // 좋아요 취소
 //                if(isLiked){
@@ -74,6 +66,4 @@ class SearchResultFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_search_result, container, false)
         return binding.root
     }
-
-
 }

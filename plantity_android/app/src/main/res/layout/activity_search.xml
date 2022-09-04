@@ -6,43 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".search.SearchActivity">
 
-    <ImageView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="42dp"
+        android:background="@drawable/searchbar_frame"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/searchbar_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="식물 이름" />
 
-    <AutoCompleteTextView
-        android:id="@+id/searchInput"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="40dp"
-        android:completionThreshold="1"
-        android:imeOptions="actionGo"
-        android:background="@android:color/transparent"
-        android:hint="식물 이름"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView"
-        app:layout_constraintEnd_toEndOf="@+id/searchView"
-        app:layout_constraintStart_toStartOf="@+id/searchView"
-        app:layout_constraintTop_toTopOf="@+id/searchView" />
-
-    <ImageView
-        android:id="@+id/searchIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView"
-        app:layout_constraintStart_toStartOf="@+id/searchView"
-        app:layout_constraintTop_toTopOf="@+id/searchView" />
+<!--    <AutoCompleteTextView-->
+<!--        android:id="@+id/searchInput"-->
+<!--        android:inputType="text"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="40dp"-->
+<!--        android:completionThreshold="1"-->
+<!--        android:imeOptions="actionGo"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:hint="식물 이름"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/searchView"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/searchView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/searchView"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/searchView" />-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/searchFragmentContainer"

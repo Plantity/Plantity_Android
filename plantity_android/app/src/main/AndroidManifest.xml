@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android"
-        android:usesCleartextTraffic="true"> <!-- http로 시작하는 사이트 접근 위해 -->
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustPan"> <!-- 네비바가 키보드와 같이 올라오는 것 방지-->
 
         <activity
             android:name=".PlantDetailActivity"

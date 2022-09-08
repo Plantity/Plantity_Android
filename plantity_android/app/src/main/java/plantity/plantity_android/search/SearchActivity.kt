@@ -20,49 +20,10 @@ class SearchActivity : AppCompatActivity() {
     val todaysPlantFragment by lazy{ TodaysPlantFragment() }
     val searchRepository = SearchRepository()
 
-
     var searchQuery:String? = null
     var page: Int = 0
-    var plantsDataList = mutableListOf<Content>()
-
-    // dummy data
-    val datas = arrayOf(
-        "android",
-        "and",
-        "apple",
-        "몬스테라",
-        "선인장"
-    )
-    val data1 = Content(
-    1,
-    "10",
-    "몬스테라",
-    "Monstera deliciosa Liebm",
-    "Monstera",
-    "식물 설명",
-    "멕시코",
-    "광도",
-    "9~10월",
-    "흰색",
-    "물 주기",
-    "관리 수준",
-    arrayListOf(1, 2))
-    val data2 = Content(
-    2,
-    "11",
-    "선인장",
-    "Monstera deliciosa Liebm",
-    "Cactus",
-    "식물 설명2",
-    "멕시코2",
-    "광도2",
-    "7~8월",
-    "노란색",
-    "물 주기2",
-    "관리 수준2",
-    arrayListOf(3, 4))
-
-    val dummyData = mutableListOf(data1, data2)
+    var allPlantsList = mutableListOf<Content>()
+    var searchedList = mutableListOf<Content>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +53,7 @@ class SearchActivity : AppCompatActivity() {
                 setResultFragment()
             }
 
+            // 고쳐야 됨
             searchView.setOnFocusChangeListener { _, hasFocus ->
                 if(hasFocus){
                     searchView.setBackgroundResource(R.drawable.searchbar_frame_clicked)
@@ -103,6 +65,23 @@ class SearchActivity : AppCompatActivity() {
                     hideKeyboard()
                 }
             }
+
+//            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+//                // when query text is changed
+//                // return true if the action was handled by the listener
+//                override fun onQueryTextSubmit(query: String?): Boolean {
+//                    TODO("Not yet implemented")
+//                }
+//
+//                // when the user submits the query
+//                // return true if the action was handled by the listener
+//                override fun onQueryTextChange(newText: String?): Boolean {
+//                    searchedList.clear()
+//                    if(newText == ""){
+//                        adapter.
+//                    }
+//                }
+//            })
 
             // 검색창 닫을 때
 //            searchView.setOnCloseListener {
@@ -165,7 +144,7 @@ class SearchActivity : AppCompatActivity() {
     // SearchRepository에서 get 끝나면 호출하는 함수
     fun loadComplete(result: SearchResult) {
         Log.d("test", "inside loadComplete, page: $page")
-        plantsDataList.addAll(result.content)
+        allPlantsList.addAll(result.content)
         //Log.d("test", "plantsList[0]: ${plantsList[0].cntntsSj}")
         // 방금 불러온 페이지가 마지막이 아닌 경우
         if(!result.last){
@@ -180,7 +159,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setResultFragment(){
-        val bundle = bundleOf("searchResult" to plantsDataList)
+        val bundle = bundleOf("allPlants" to allPlantsList)
 
         val searchResultFragment = SearchResultFragment()
 

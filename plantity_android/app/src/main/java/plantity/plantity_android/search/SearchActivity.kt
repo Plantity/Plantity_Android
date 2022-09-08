@@ -1,16 +1,22 @@
 package plantity.plantity_android.search
 
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
-import android.view.KeyEvent
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.util.TypedValue
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.annotation.Dimension
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
+import androidx.core.view.marginEnd
+import androidx.core.view.marginStart
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivitySearchBinding
@@ -51,6 +57,10 @@ class SearchActivity : AppCompatActivity() {
             searchView.setOnSearchClickListener {
                 searchView.setBackgroundResource(R.drawable.searchbar_frame_clicked)
                 setResultFragment()
+
+                // 취소 버튼 중복 생성 방지
+                if(binding.cancelLayout.childCount == 0)
+                    setCancelButton()
             }
 
             // 고쳐야 됨
@@ -82,37 +92,6 @@ class SearchActivity : AppCompatActivity() {
 //                    }
 //                }
 //            })
-
-            // 검색창 닫을 때
-//            searchView.setOnCloseListener {
-//                searchView.setBackgroundResource(R.drawable.searchbar_frame)
-//                setTodaysPlantFragment()
-//                hideKeyboard()
-//                searchView.clearFocus()
-//                true
-//            }
-            // AutoCompleteTextView에 나열된 항목을 클릭했을 경우 바로 적용 되도록
-//            searchInput.setOnItemClickListener { parent, view, position, id ->
-//                Toast.makeText(this@SearchActivity, "검색 처리됨 : ${searchInput.text}", Toast.LENGTH_SHORT).show()
-//                // 목록에서 조회 -> 결과 보여주기
-//                doSearch(searchInput.text.toString())
-//                //searchRepository.getSearchPlants(page, this@SearchActivity)
-//            }
-            
-            // 엔터키 눌렀을 때 검색 처리
-//            searchInput.setOnKeyListener { _, action, keyEvent ->
-//                if((keyEvent.action == KeyEvent.ACTION_DOWN) && (action == KeyEvent.KEYCODE_ENTER)) {
-//                    Toast.makeText(this@SearchActivity, "검색 처리됨 : ${searchInput.text}", Toast.LENGTH_SHORT).show()
-//                    // 목록에서 조회 -> 결과 보여주기
-//                    //doSearch(searchInput.text.toString())
-//                    searchQuery = searchInput.text.toString()
-//                    Log.d("test", "searchQuery: $searchQuery")
-//                    searchRepository.getSearchPlants(page, this@SearchActivity)
-//                    true
-//                }
-//                else
-//                    false
-//            }
         }
     }
 
@@ -135,7 +114,6 @@ class SearchActivity : AppCompatActivity() {
         transaction2.commit()
     }
 
-    // autocompletetextview 자동 완성 위해서 식물 이름으로만 이루어진 배열 만들기 -> (cancel)
     // 식물 정보로 이루어진 배열 만들기
     fun setPlantsList(){
         searchRepository.getSearchPlants(page, this)
@@ -154,7 +132,6 @@ class SearchActivity : AppCompatActivity() {
         // 방금 불러온 페이지가 마지막인 경우
         else{
             page = 0
-
         }
     }
 
@@ -169,21 +146,57 @@ class SearchActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    // 식물 목록에서 조회하고 결과 보여주는 함수를 호출하는 함수
-    private fun doSearch(query: String?){
-        //val resultData = dummyData.find{it.cntntsSj == query}
-        //val resultData =
-        //searchRepository.getSearchPlants(page, this)
-        /*if(resultData == null)  // 찾은 데이터가 없을 때
-            Toast.makeText(this@SearchActivity, "찾을 수 없음: $query", Toast.LENGTH_SHORT).show()
-        else {  // 원하는 결과 찾았을 때
-            Log.d("test", "${resultData?.plantId},${resultData?.plntzrNm}")
-            // 키보드 내리기
-            this@SearchActivity.hideKeyboard()
-            // 검색 결과 보여주기
-            setResultFragment(resultData)
-        }*/
+    fun setCancelButton(){
+        val cancelText = TextView(applicationContext)
+        cancelText.text = "취소"
+        cancelText.setTextColor(Color.BLACK)
+        //cancelText.textSize = resources.getDimension((R.dimen.dp_15))
+        //cancelText.setTextSize(Dimension.DP, 15F)
+        cancelText.setTextSize(Dimension.DP, resources.getDimension(R.dimen.dp_15))
 
+        // 취소 버튼 클릭 되면
+        cancelText.setOnClickListener{
+            setTodaysPlantFragment()
+            hideKeyboard()
+            binding.searchView.clearFocus()
+            binding.searchView.onActionViewCollapsed()
+            binding.cancelLayout.removeView(cancelText)
+            // 검색창 배경
+            binding.searchView.setBackgroundResource(R.drawable.searchbar_frame)
+            
+            // 검색창 크기 원래대로 되돌리기
+            var searchViewParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT, resources.getDimension((R.dimen.dp_42)).toInt()
+            )
+
+            searchViewParams.marginEnd = resources.getDimension((R.dimen.dp_20)).toInt()
+            searchViewParams.marginStart = resources.getDimension((R.dimen.dp_20)).toInt()
+            // searchViewParams.topMargin = resources.getDimension((R.dimen.dp_10)).toInt() -> 안 먹혀서 그냥 constraint layout에 padding 적용함..
+
+            binding.searchView.layoutParams = searchViewParams
+        }
+
+        // 검색창 크기 줄이기
+        var searchViewAfterParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT, resources.getDimension((R.dimen.dp_42)).toInt()
+        )
+        searchViewAfterParams.marginEnd = resources.getDimension((R.dimen.dp_60)).toInt()
+        searchViewAfterParams.marginStart = resources.getDimension((R.dimen.dp_20)).toInt()
+        searchViewAfterParams.topMargin = resources.getDimension((R.dimen.dp_10)).toInt()
+        binding.searchView.layoutParams = searchViewAfterParams
+
+        // 취소 버튼 layout
+        var marginLeft = resources.getDimension((R.dimen.dp_10))
+        var marginRight = resources.getDimension((R.dimen.dp_20))
+
+        var param = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        param.marginStart = marginLeft.toInt()
+        param.marginEnd = marginRight.toInt()
+
+        cancelText.layoutParams = param
+
+        // 취소 버튼 추가
+        binding.cancelLayout.addView(cancelText)
     }
 
     fun setNavBarFragment(title:String){

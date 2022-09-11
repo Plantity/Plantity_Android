@@ -10,8 +10,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
-import java.util.*
 import plantity.plantity_android.databinding.ItemPlantCardBinding
+import java.util.*
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
@@ -44,9 +44,9 @@ class PlantLogActivity : AppCompatActivity() {
     }
 
     private fun setFragment(){
-//        val transaction = supportFragmentManager.beginTransaction()
-//        transaction.add(R.id.calFragmentContainer, calendarFragment)
-//        transaction.commit()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.calFragmentContainer, calendarFragment)
+        transaction.commit()
 
         val navBarFragment : NavBarFragment = NavBarFragment()
         val transaction2 = supportFragmentManager.beginTransaction()
@@ -94,5 +94,4 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
         }
     }
 }
-
 

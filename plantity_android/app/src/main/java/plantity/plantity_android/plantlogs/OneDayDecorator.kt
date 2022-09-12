@@ -7,12 +7,11 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import plantity.plantity_android.R
 
-class TodayDecorator(context: Context?): DayViewDecorator {
-    private var today = CalendarDay.today()
-    private val drawable: Drawable = context?.getDrawable(R.drawable.calendar_selected_background)!!
+class OneDayDecorator(context: Context?): DayViewDecorator {
+    private val drawable: Drawable = context?.getDrawable(R.drawable.calendar_background)!!
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
-        return day?.equals(today)!!
+        return true
     }
 
     override fun decorate(view: DayViewFacade?) {

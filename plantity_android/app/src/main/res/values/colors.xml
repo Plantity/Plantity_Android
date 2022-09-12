@@ -17,4 +17,5 @@
     <color name="bg_green">#D6ECCC</color> //다양한 곳 백그라운드로 쓰이는 연두색
     <color name="progressbar_pink">#FDA6FF</color>
     <color name="mypage_bg">#F5F5F5</color>
+    <color name="strong_green">#34C759</color>
 </resources>

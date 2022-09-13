@@ -67,7 +67,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infolinearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/infolinearLayout"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/guideline_card_cell"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

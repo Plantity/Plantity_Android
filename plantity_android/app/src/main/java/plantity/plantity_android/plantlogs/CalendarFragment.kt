@@ -19,6 +19,9 @@ class CalendarFragment : Fragment() {
 
     var selectedDate: CalendarDay = CalendarDay.today()
 
+    private var dateText = ""
+    private var dayText = ""
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -36,18 +39,36 @@ class CalendarFragment : Fragment() {
         var logDetailView: View
 
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
-        Log.d("test", binding.toString())
-        assignmentDays.add(CalendarDay.today())
+
+        // 과제 완료한 날들 dummy로 추가
+        assignmentDays.add(CalendarDay.from(2022, 9, 11))
         Log.d("test", "today is ${CalendarDay.today()}")
         assignmentDays.add(CalendarDay.from(2022, 9, 22))
 
-        var decorator = CalendarLogDecorator(activity, assignmentDays as ArrayList<CalendarDay>)
-        var todayDecorator = TodayDecorator(context)
+        val logDecorator = CalendarLogDecorator(activity, assignmentDays as ArrayList<CalendarDay>)
+
+        // 오늘 날짜는 선택된 상태로
+        val oneDayDecorator = OneDayDecorator(context)
 
 
         with(binding){
-            // 로그 기록이 있을 때를 위한 데코레이터
-            calendarView.addDecorators(decorator)
+            // 오늘을 선택된 날짜로
+            calendarView.selectedDate = CalendarDay.today()
+            dateText = selectedDate.day.toString()  // 일
+            when(selectedDate.date.dayOfWeek.value){  // 요일
+                1 -> dayText = "Mon"
+                2 -> dayText = "Tue"
+                3 -> dayText = "Wed"
+                4 -> dayText = "Thur"
+                5 -> dayText = "Fri"
+                6 -> dayText = "Sat"
+                7 -> dayText = "Sun"
+            }
+            val text = dateText+"\n"+dayText
+            selectedDay.text = text
+
+            // 로그 기록과 날짜 클릭 데코레이터 등록
+            calendarView.addDecorators(logDecorator, oneDayDecorator)
 
             // 선택된 날짜 바꼈을 때
             calendarView.setOnDateChangedListener(object: OnDateSelectedListener{
@@ -57,42 +78,48 @@ class CalendarFragment : Fragment() {
                     selected: Boolean
                 ) {
                     // 로그 기록 없을 때를 위한 데코레이터 -> 수정 필요...
-                    calendarView.removeDecorator(todayDecorator)
+                    //calendarView.removeDecorator(oneDayDecorator)
                     selectedDate = date
 //                    Log.d("test", "parameter date is $date")
                     Log.d("test", "selectedDate is $selectedDate")
-                    calendarView.addDecorator(todayDecorator)
+                    //calendarView.addDecorator(oneDayDecorator)
 
                     /* 데이터 가져오기 */
 
                     // 달력에 날짜 바꿔주기
-                    val date = selectedDate.day.toString()  // 일
+                    dateText = selectedDate.day.toString()  // 일
                     //val day = selectedDate.date.dayOfWeek.value  // 요일
-                    var day = ""
-                    when(selectedDate.date.dayOfWeek.value){
-                        //0 -> day = "Sun"
-                        1 -> day = "Mon"
-                        2 -> day = "Tue"
-                        3 -> day = "Wed"
-                        4 -> day = "Thur"
-                        5 -> day = "Fri"
-                        6 -> day = "Sat"
-                        7 -> day = "Sun"
+                    dayText = ""
+                    when(selectedDate.date.dayOfWeek.value){  // 요일
+                        1 -> dayText = "Mon"
+                        2 -> dayText = "Tue"
+                        3 -> dayText = "Wed"
+                        4 -> dayText = "Thur"
+                        5 -> dayText = "Fri"
+                        6 -> dayText = "Sat"
+                        7 -> dayText = "Sun"
                     }
                     Log.d("test", "day is ${selectedDate.date.dayOfWeek}")
 
-                    Log.d("test", "date: $date , day: $day")
-                    val text = date+"\n"+day
+                    Log.d("test", "date: $dateText , day: $dayText")
+                    val text = dateText+"\n"+dayText
                     Log.d("test", "setting text to $text")
                     selectedDay.text = text
                 }
             })
+
             // 식물 로그 과제 찍는 코드
             logInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             logDetailView = logInflater.inflate(R.layout.item_plant_log_caring, null)
             logDetail.addView(logDetailView)
 
             logDetailView = logInflater.inflate(R.layout.item_plant_log_sunlight, null)
+            logDetail.addView(logDetailView)
+
+            logDetailView = logInflater.inflate(R.layout.item_plant_log_watering, null)
+            logDetail.addView(logDetailView)
+
+            logDetailView = logInflater.inflate(R.layout.item_plant_log_repotting, null)
             logDetail.addView(logDetailView)
         }
 

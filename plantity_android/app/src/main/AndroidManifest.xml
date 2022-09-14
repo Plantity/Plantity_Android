@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="plantity.plantity_android">
-
-    <!--서버 통신 위한 인터넷 권한-->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 서버 통신 위한 인터넷 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".PlantDetailActivity"
             android:exported="false" />
@@ -22,19 +23,18 @@
             android:exported="false" />
         <activity
             android:name=".guideline.GuideLineActivity"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".plantlogs.PlantLogActivity"
             android:exported="false" />
         <activity
             android:name=".search.SearchActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"><!-- 네비바가 키보드와 같이 올라오는 것 방지-->
+            android:windowSoftInputMode="adjustPan"> <!-- 네비바가 키보드와 같이 올라오는 것 방지 -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".main.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".starts.SplashActivity"
             android:exported="true">

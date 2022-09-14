@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
+import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
-import plantity.plantity_android.databinding.PlantItemBinding
+import plantity.plantity_android.databinding.ItemPlantCardBinding
+import java.util.*
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
@@ -20,7 +22,7 @@ class PlantLogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setFragment()
-
+        setNavBarFragment("log")
         // adapter 생성
         val cardViewAdapter = CardViewAdapter()
         // 화면의 viewPager와 연결
@@ -45,7 +47,21 @@ class PlantLogActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.calFragmentContainer, calendarFragment)
         transaction.commit()
-        Log.d("test", "after commit")
+
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        val transaction2 = supportFragmentManager.beginTransaction()
+        transaction2.add(R.id.nav_bar,navBarFragment)
+        transaction2.commit()
+    }
+
+    fun setNavBarFragment(title:String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        navBarFragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.nav_bar,navBarFragment)
+        transaction.commit()
     }
 }
 
@@ -53,14 +69,14 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         // 표시되는 view의 정보를 넘겨줘야 해서 3개의 인자를 전달
-        val binding = PlantItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPlantCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
     // 한 화면에 보이는 개수만큼 호출
     override fun onBindViewHolder(holder: Holder, position: Int) {
         // 사용할 데이터 꺼내기
-        val item = items.get(position)
+        val item = items[position]
         // holder에 데이터 전달
         holder.setData(item)
     }
@@ -69,7 +85,7 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
         return items.size
     }
 
-    class Holder(val binding: PlantItemBinding): RecyclerView.ViewHolder(binding.root){
+    class Holder(val binding: ItemPlantCardBinding): RecyclerView.ViewHolder(binding.root){
         lateinit var currentItem:String
 
         fun setData(data:String){
@@ -78,5 +94,4 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
         }
     }
 }
-
 

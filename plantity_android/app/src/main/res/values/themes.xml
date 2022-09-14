@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name = "windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="plant_a_tre">
@@ -25,5 +27,25 @@
         <item name="android:shadowRadius">9</item>
     </style>
 
+<!--    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">-->
+<!--        <item name="android:focusedMonthDateColor">@drawable/calendar_selected_background</item>-->
+<!--    </style>-->
+
+    <!-- 달력 안의 숫자들에 적용되는 스타일 -->
+    <style name="CalendarViewDateCustomText">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- 달력 안의 요일들에 적용되는 스타일 -->
+    <style name="CalendarViewWeekCustomText">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <!-- 연, 월을 표시하는 헤더에 적용되는 스타일 -->
+    <style name="CalendarWidgetHeader">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>

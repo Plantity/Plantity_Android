@@ -41,6 +41,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="24dp"
         android:background="@drawable/green_button"
+        android:elevation="2dp"
         android:text="1분만에 나에게 맞는 식물 추천받기"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/login_button"

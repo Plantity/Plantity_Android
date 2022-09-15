@@ -2,43 +2,55 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_gray"
     tools:context=".mypages.MypageActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/box"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
-        android:text="마이페이지"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/setting_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:srcCompat="@drawable/setting"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="25dp"
+            android:text="마이페이지"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/setting_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:srcCompat="@drawable/setting"
+            android:scaleType="fitCenter"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <FrameLayout
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/box" />
 
     <FrameLayout
         android:id="@+id/myplants"
@@ -54,7 +66,7 @@
         android:id="@+id/like"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/rounded_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +74,8 @@
 
     <FrameLayout
         android:id="@+id/nav_bar"
-        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

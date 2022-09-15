@@ -5,28 +5,61 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
 import plantity.plantity_android.databinding.ItemPlantCardBinding
+import plantity.plantity_android.search.SearchResultFragment
 import java.util.*
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
     val calendarFragment by lazy { CalendarFragment() }
 
+    // 식물 2개 만들어서 확인하기
+    private var plant1Log = arrayListOf(
+        MyPlantLogData("2022-09-07",true, true, true, true),
+        MyPlantLogData("2022-09-10", false, false, true, true),
+        MyPlantLogData("2022-09-14", true, false, true, false)
+    )
+    private var plant1 = MyPlantData("꺅둥이", "몬스테라", "2022-08-14", plant1Log)
+
+    private var plant2Log = arrayListOf(
+        MyPlantLogData("2022-09-09",false, false, true, false),
+        MyPlantLogData("2022-09-11", true, false, true, true),
+        MyPlantLogData("2022-09-15", true, false, false, false)
+    )
+    private var plant2 = MyPlantData("새삼이", "다육선인장", "2022-09-01", plant2Log)
+    private var dummy = arrayListOf(
+        plant1,
+        plant2
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setFragment()
+        /* 데이터 먼저 가져오기!! */
+
+        setFragment()  // -> 처음엔 bundle로 보내놓고 calendar fragment 내부에 변수로 저장해두기
         setNavBarFragment("log")
         // adapter 생성
-        val cardViewAdapter = CardViewAdapter()
+        val cardViewAdapter = CardViewAdapter(dummy)
         // 화면의 viewPager와 연결
         binding.cardViewPager.adapter = cardViewAdapter
+
+        binding.cardViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+            // 처음 실행했을 때도 실행됨..
+            override fun onPageSelected(position: Int){
+                // position은 0부터 시작
+                Log.d("test", "position changed to $position")
+                calendarFragment.handleCardSwipe(position)
+            }
+        })
         TabLayoutMediator(binding.tabLayout, binding.cardViewPager){ tab, position ->
             // 필요한 구현?
         }.attach()
@@ -44,7 +77,9 @@ class PlantLogActivity : AppCompatActivity() {
     }
 
     private fun setFragment(){
+        val bundle = bundleOf("myPlantDatas" to dummy)
         val transaction = supportFragmentManager.beginTransaction()
+        calendarFragment.arguments = bundle
         transaction.add(R.id.calFragmentContainer, calendarFragment)
         transaction.commit()
 
@@ -65,7 +100,7 @@ class PlantLogActivity : AppCompatActivity() {
     }
 }
 
-class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라", "선인장")): RecyclerView.Adapter<CardViewAdapter.Holder>(){
+class CardViewAdapter(var items: ArrayList<MyPlantData>): RecyclerView.Adapter<CardViewAdapter.Holder>(){
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         // 표시되는 view의 정보를 넘겨줘야 해서 3개의 인자를 전달
@@ -86,11 +121,13 @@ class CardViewAdapter(var items: ArrayList<String> = arrayListOf("몬스테라",
     }
 
     class Holder(val binding: ItemPlantCardBinding): RecyclerView.ViewHolder(binding.root){
-        lateinit var currentItem:String
+        lateinit var currentItem: MyPlantData
 
-        fun setData(data:String){
-            currentItem=data
-            binding.plantName.text = data
+        fun setData(data: MyPlantData){
+            currentItem = data
+            binding.plantName.text = data.name
+            binding.plantType.text = data.plantType
+            binding.sinceText.text = "Since " + data.since
         }
     }
 }

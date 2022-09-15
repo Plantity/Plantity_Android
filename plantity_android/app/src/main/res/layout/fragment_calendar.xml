@@ -149,7 +149,95 @@
         android:orientation="vertical"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@+id/selectedDay"
-        app:layout_constraintTop_toBottomOf="@id/calendarView" />
+        app:layout_constraintTop_toBottomOf="@id/calendarView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_caring2" />
+            <TextView
+                android:id="@+id/caringText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:text="살펴보기 완료!"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_repotting2"/>
+
+            <TextView
+                android:id="@+id/repottingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:text="분갈이 완료!"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- 다른 기종에서도 크기 동일하게 나오는지 확인-->
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_sunlight2" />
+
+            <TextView
+                android:id="@+id/sunlightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:text="광합성 완료!"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_watering2"/>
+
+            <TextView
+                android:id="@+id/wateringText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:text="물 주기 완료!"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="350dp"

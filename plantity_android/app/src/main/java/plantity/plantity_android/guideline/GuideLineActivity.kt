@@ -2,6 +2,8 @@ package plantity.plantity_android.guideline
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityGuideLineBinding
@@ -16,6 +18,11 @@ class GuideLineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityGuideLineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val listdata = mutableListOf<GuideData>()
+
+        binding.gdRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.gdRecyclerView.adapter=GuideLineListAdapter(listdata)
+        binding.gdRecyclerView.addItemDecoration(DividerItemDecoration(this,LinearLayoutManager.VERTICAL))
         setNavBarFragment("guide")
         
     }

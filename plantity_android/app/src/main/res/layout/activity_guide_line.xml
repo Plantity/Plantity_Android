@@ -50,6 +50,17 @@
                     android:text="Editor's Pick"
                     android:textColor="#2E7400" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gd_recyclerView"
+            android:layout_width="326dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infolinearLayout"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/guideline_card_cell"/>
                 <TextView
                     android:id="@+id/gd_tv_semititle"
                     android:layout_width="match_parent"

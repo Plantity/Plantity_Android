@@ -35,11 +35,11 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="15dp"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView2"
             app:srcCompat="@drawable/setting"
+            android:scaleType="fitCenter"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="#F1F1F1"
     tools:context=".mypages.MypageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +23,7 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="25dp"
             android:text="마이페이지"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +34,13 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="7dp"
             android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView2"
             app:srcCompat="@drawable/setting"
-            android:scaleType="fitCenter"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -48,6 +49,7 @@
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box" />

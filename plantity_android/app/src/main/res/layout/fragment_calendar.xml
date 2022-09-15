@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="살펴보기 완료!"
+                android:text="살펴보기 미완료"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="분갈이 완료!"
+                android:text="분갈이 미완료"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="광합성 완료!"
+                android:text="광합성 미완료"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
         </LinearLayout>
@@ -232,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:text="물 주기 완료!"
+                android:text="물 주기 미완료"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
 

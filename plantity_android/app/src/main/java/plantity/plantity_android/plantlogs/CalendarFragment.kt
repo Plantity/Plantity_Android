@@ -21,6 +21,7 @@ class CalendarFragment : Fragment() {
     private lateinit var plantLogActivity: PlantLogActivity
     private lateinit var myPlantDatas: ArrayList<MyPlantData>
 
+    lateinit var currentItem: MyPlantData
     var assignmentDays = mutableListOf<CalendarDay>()
     var selectedDate: CalendarDay = CalendarDay.today()
 
@@ -123,30 +124,20 @@ class CalendarFragment : Fragment() {
                     selectedDay.text = text
 
                     // 로그 디테일 내용 바꿔주기
-                    //changeLogText()
+                    var selectedLog = currentItem.logData.find{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) == selectedDate }
+
+                    if (selectedLog != null) {
+                        changeLogText(selectedLog)
+                    }
                 }
             })
-
-            // 식물 로그 과제 찍는 코드
-//            logInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//            logDetailView = logInflater.inflate(R.layout.item_plant_log_caring, null)
-//            logDetail.addView(logDetailView)
-//
-//            logDetailView = logInflater.inflate(R.layout.item_plant_log_sunlight, null)
-//            logDetail.addView(logDetailView)
-//
-//            logDetailView = logInflater.inflate(R.layout.item_plant_log_watering, null)
-//            logDetail.addView(logDetailView)
-//
-//            logDetailView = logInflater.inflate(R.layout.item_plant_log_repotting, null)
-//            logDetail.addView(logDetailView)
         }
         return binding.root
     }
 
     // position은 0부터 시작
     fun handleCardSwipe(pos: Int){
-        var currentItem = myPlantDatas[pos]
+        currentItem = myPlantDatas[pos]
         var currentItemLog = currentItem.logData
         Log.d("test", "position is $pos")
         Log.d("test", "currentItem is ${currentItem.name}")
@@ -163,7 +154,12 @@ class CalendarFragment : Fragment() {
         binding.calendarView.removeDecorator(logDecorator)
         logDecorator = CalendarLogDecorator(activity, assignmentDays as ArrayList<CalendarDay>)
         binding.calendarView.addDecorator(logDecorator)
-        // changeLogText() -> ???
+
+        var selectedLog = currentItemLog.find{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) == binding.calendarView.selectedDate }
+
+        if (selectedLog != null) {
+            changeLogText(selectedLog)
+        }
     }
 
     fun changeLogText(log : MyPlantLogData){

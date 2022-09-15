@@ -56,32 +56,22 @@
                         app:layout_constraintTop_toTopOf="@+id/plantName" />
 
                     <TextView
-                        android:id="@+id/difficultyRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:text="난이도: ⭐⭐⭐"
-                        android:textSize="12dp"
-                        android:textColor="@color/gray"
-                        app:layout_constraintStart_toEndOf="@+id/plantImg"
-                        app:layout_constraintTop_toBottomOf="@+id/plantName" />
-
-                    <TextView
                         android:id="@+id/helpMsg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="25dp"
 
                         android:maxWidth="160dp"
                         android:maxLines="3"
-                        android:text="물은 7일에 한 번 주세요"
+                        android:text="✔ 물은 7일에 한 번 주세요"
                         android:textSize="14dp"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/plantImg"
-                        app:layout_constraintTop_toBottomOf="@+id/difficultyRate" />
+                        app:layout_constraintTop_toBottomOf="@+id/plantName" />
 
                      <TextView
+                         android:id="@+id/sinceText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"

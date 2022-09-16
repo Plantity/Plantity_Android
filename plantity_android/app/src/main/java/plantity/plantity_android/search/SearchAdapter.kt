@@ -1,10 +1,16 @@
 package plantity.plantity_android.search
 
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_plant_list_recycler.*
+import plantity.plantity_android.PlantDetailActivity
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ItemPlantListRecyclerBinding
 
@@ -25,6 +31,11 @@ class SearchAdapter(private var plantsList: MutableList<Content>): RecyclerView.
         // 2. 홀더에 데이터 전달
         holder.setPlant(plant)
         // 3. class Holder에서 받은 데이터를 출력함
+//        holder.itemView.setOnClickListener {
+//            val intent = Intent(holder.itemView.context, PlantDetailActivity::class.java)
+//            intent.putExtra("selectedPlant", holder.itemView.context.)
+//            ContextCompat.startActivity(holder.itemView.context, intent, null)
+//        }
     }
 
     // 전체 데이터 개수 리턴
@@ -54,8 +65,14 @@ class SearchAdapter(private var plantsList: MutableList<Content>): RecyclerView.
                     isLiked = true
                 }
             }
-            // 클릭 했을 때 상세 보기로 넘어가는 클릭 이벤트 리스너 작성하기
-            //Toast.makeText(binding.root.context, "선택된 아이템: ${currentPlant.cntntsSj}", Toast.LENGTH_SHORT).show()
+
+            // 클릭 했을 때 상세 보기 페이지로 넘어가는 클릭 이벤트 리스너
+            binding.root.setOnClickListener {
+                //Toast.makeText(binding.root.context, "선택된 아이템: ${currentPlant.cntntsSj}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(itemView.context, PlantDetailActivity::class.java)
+                intent.putExtra("selectedPlant", currentPlant.cntntsNo)
+                ContextCompat.startActivity(itemView.context, intent, null)
+            }
         }
 
         fun setPlant(plant: Content) {
@@ -69,8 +86,6 @@ class SearchAdapter(private var plantsList: MutableList<Content>): RecyclerView.
                     "089003" -> difficultyRate.text = "난이도: ⭐⭐⭐"
                     else -> difficultyRate.text = "난이도: "
                 }
-
-
             }
         }
     }

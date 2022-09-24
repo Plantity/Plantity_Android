@@ -70,8 +70,9 @@
 
     <TextView
         android:id="@+id/short_comment"
-        android:layout_width="260dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="260dp"
         android:layout_marginTop="10dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"

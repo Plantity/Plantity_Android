@@ -2,6 +2,7 @@ package plantity.plantity_android
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import plantity.plantity_android.search.Content
@@ -49,14 +50,34 @@ class PlantDetailActivity : AppCompatActivity() {
                         }
 
                         short_comment.text = adviseInfo // 짧은 설명
-                        water_comment.text = watercycleSprngCodeNm // 물 주기 -> 멘트 변경 필요!!!!!
-                        sun_comment.text = lighttdemanddoCodeNm  // 햇빛 -> 멘트 변경 필요!!!!
+
+                        if(watercycleSprngCodeNm.contains("축축")){  // 물 주기
+                            water_comment.text = "흙을 항상 축축하게 유지해주세요"
+                        }
+                        else if(watercycleSprngCodeNm.contains("촉촉")){
+                            water_comment.text = "물을 3일에 한 번씩, 흙이 마르면 주세요."
+                        }
+                        else if(watercycleSprngCodeNm.contains("표면")){
+                            water_comment.text = "물을 7일에 한 번씩, 표면이 마르면 주세요."
+                        }
+                        else if(watercycleSprngCodeNm.contains("대부분")){
+                            water_comment.text = "흙이 바싹 말랐을 떄 조금씩 주세요."
+                        }
+
+                        if(lighttdemanddoCodeNm.contains("낮은")){  // 광도
+                            sun_comment.text = "햇빛이 적은 것을 좋아해요."
+                        }
+                        else if(lighttdemanddoCodeNm.contains("높은")){
+                            sun_comment.text = "햇빛을 매우 좋아해요."
+                        }
+                        else {
+                            sun_comment.text = "햇빛이 적당한 것을 좋아해요."
+                        }
                         name.append(plntbneNm) // 학명
                         eng_name.append(plntzrNm) // 영문명
                         country.append(orgplceInfo) // 원산지
                         flower_time.append(ignSeasonCodeNm) // 개화시기
                         flower_color.append(flclrCodeNm) // 꽃색깔
-                        flower_lang.append("") // 꽃말
                     }
                 }
                 else{  // 통신은 성공했지만 응답에 문제가 있는 경우
@@ -66,7 +87,7 @@ class PlantDetailActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<PlantData>, t: Throwable) {  // 통신에 실패한 경우
-    //                Toast.makeText(getApplicationContext(), "통신 실패", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "통신 실패", Toast.LENGTH_SHORT).show()
                 Log.d("test", "서버 통신 실패, code: ${t.message}")
             }
         })
@@ -77,7 +98,7 @@ class PlantDetailActivity : AppCompatActivity() {
 
         var like = false //찜한 목록에 있는지 불러오기
         heart.setOnClickListener{
-            if(like==false){
+            if(!like){
                 heart.setBackgroundResource(R.drawable.ic_heart_full)
                 like = true
             }

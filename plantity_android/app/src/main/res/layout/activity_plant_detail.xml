@@ -11,7 +11,7 @@
         android:layout_width="25dp"
         android:layout_height="21dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +70,9 @@
 
     <TextView
         android:id="@+id/short_comment"
-        android:layout_width="260dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="260dp"
         android:layout_marginTop="10dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +81,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/detail_box"
-        android:layout_width="315dp"
+        android:layout_width="330dp"
         android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/bg_green"
@@ -152,6 +153,7 @@
         android:text="더 자세히 알려드릴게요"
         android:textColor="@color/black"
         android:textSize="14dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detail_box"
         app:layout_constraintTop_toBottomOf="@+id/detail_box" />
 
@@ -171,6 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:maxWidth="300dp"
         android:text="· 영문명: "
         android:textColor="@color/black"
         android:textSize="14dp"
@@ -204,22 +207,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="· 꽃색깔: "
+        android:text="· 꽃 색: "
         android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/flower_time" />
-
-    <TextView
-        android:id="@+id/flower_lang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="· 꽃말: "
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/flower_color" />
 
     <Button
         android:id="@+id/plant_add"

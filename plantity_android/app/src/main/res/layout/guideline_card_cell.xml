@@ -7,13 +7,13 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
         android:layout_margin="10dp"
         android:clickable="false"
-        app:cardBackgroundColor="@color/bg_green">
-
+        app:cardBackgroundColor="@color/bg_green"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,11 +24,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="302dp"
                 android:layout_height="136dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/logo1"
-                android:layout_margin="10dp"/>
+                app:srcCompat="@drawable/logo1" />
 
             //우측 제목 및 설명
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -48,7 +49,7 @@
                     android:id="@+id/gd_card_context"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Explanation" />
+                    android:text="Explanation \n본 설명은 샘플용 텍스트입니다. \n옆의 이미지는 샘플용 이미지입니다." />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

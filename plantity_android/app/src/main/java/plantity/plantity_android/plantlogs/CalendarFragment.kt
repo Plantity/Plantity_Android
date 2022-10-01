@@ -1,33 +1,34 @@
 package plantity.plantity_android.plantlogs
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.CalendarMonth
-import com.kizitonwose.calendarview.model.DayOwner
-import com.kizitonwose.calendarview.ui.DayBinder
-import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
-import com.kizitonwose.calendarview.ui.ViewContainer
+import androidx.fragment.app.Fragment
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.FragmentCalendarBinding
-import plantity.plantity_android.databinding.ItemCalendarDayBinding
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.YearMonth
+import plantity.plantity_android.search.Content
 
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var plantLogActivity: PlantLogActivity
+    private lateinit var myPlantDatas: ArrayList<MyPlantData>
 
-    private var selectedDate: LocalDate? = null
-    private val today = LocalDate.now()
+    lateinit var currentItem: MyPlantData
+    var assignmentDays = mutableListOf<CalendarDay>()
+    var selectedDate: CalendarDay = CalendarDay.today()
+
+    private var dateText = ""
+    private var dayText = ""
+
+    lateinit var logDecorator: CalendarLogDecorator
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,128 +42,147 @@ class CalendarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //var assignmentDays = mutableListOf<CalendarDay>()
+//        var logInflater: LayoutInflater
+//        var logDetailView: View
+
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
+
+        // PlantLogActivity로부터 번들 받기
+        val bundle = Bundle(arguments)
+        myPlantDatas = bundle.get("myPlantDatas") as ArrayList<MyPlantData>
+        //logDates = myPlantDatas[0].logData.map
+        //val date = LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
+        assignmentDays =
+            myPlantDatas[0].logData.map{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) } as MutableList<CalendarDay>
+        Log.d("test", "assignmentDays are ${assignmentDays.size}")
+
+        // 과제 완료한 날들 dummy로 추가
+//        assignmentDays.add(CalendarDay.from(2022, 9, 11))
+//        Log.d("test", "today is ${CalendarDay.today()}")
+//        assignmentDays.add(CalendarDay.from(2022, 9, 22))
+
+        logDecorator = CalendarLogDecorator(activity, assignmentDays as ArrayList<CalendarDay>)
+
+        // 오늘 날짜는 선택된 상태로
+        val oneDayDecorator = OneDayDecorator(context)
+
+        with(binding){
+            // 오늘을 선택된 날짜로
+            calendarView.selectedDate = CalendarDay.today()
+            dateText = selectedDate.day.toString()  // 일
+            when(selectedDate.date.dayOfWeek.value){  // 요일
+                1 -> dayText = "Mon"
+                2 -> dayText = "Tue"
+                3 -> dayText = "Wed"
+                4 -> dayText = "Thur"
+                5 -> dayText = "Fri"
+                6 -> dayText = "Sat"
+                7 -> dayText = "Sun"
+            }
+            val text = dateText+"\n"+dayText
+            selectedDay.text = text
+
+            // 로그 기록과 날짜 클릭 데코레이터 등록
+            calendarView.addDecorators(logDecorator, oneDayDecorator)
+
+            // 선택된 날짜 바꼈을 때
+            calendarView.setOnDateChangedListener(object: OnDateSelectedListener{
+                override fun onDateSelected(
+                    widget: MaterialCalendarView,
+                    date: CalendarDay,
+                    selected: Boolean
+                ) {
+//                    val index = MyPlantData()
+                    // 로그 기록 없을 때를 위한 데코레이터 -> 수정 필요... -> 완료
+                    //calendarView.removeDecorator(oneDayDecorator)
+                    selectedDate = date
+//                    Log.d("test", "parameter date is $date")
+                    Log.d("test", "selectedDate is $selectedDate")
+                    //calendarView.addDecorator(oneDayDecorator)
+
+                    /* 데이터 가져오기 */
+
+                    // 달력에 날짜 바꿔주기
+                    dateText = selectedDate.day.toString()  // 일
+                    //val day = selectedDate.date.dayOfWeek.value  // 요일
+                    dayText = ""
+                    when(selectedDate.date.dayOfWeek.value){  // 요일
+                        1 -> dayText = "Mon"
+                        2 -> dayText = "Tue"
+                        3 -> dayText = "Wed"
+                        4 -> dayText = "Thur"
+                        5 -> dayText = "Fri"
+                        6 -> dayText = "Sat"
+                        7 -> dayText = "Sun"
+                    }
+                    Log.d("test", "day is ${selectedDate.date.dayOfWeek}")
+
+                    Log.d("test", "date: $dateText , day: $dayText")
+                    val text = dateText+"\n"+dayText
+                    Log.d("test", "setting text to $text")
+                    selectedDay.text = text
+
+                    // 로그 디테일 내용 바꿔주기
+                    var selectedLog = currentItem.logData.find{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) == selectedDate }
+
+                    if (selectedLog != null) {
+                        changeLogText(selectedLog)
+                    }
+                }
+            })
+        }
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentCalendarBinding.bind(view)
+    // position은 0부터 시작
+    fun handleCardSwipe(pos: Int){
+        currentItem = myPlantDatas[pos]
+        var currentItemLog = currentItem.logData
+        Log.d("test", "position is $pos")
+        Log.d("test", "currentItem is ${currentItem.name}")
+        Log.d("test", "currentLog size is ${currentItemLog.size}")
 
-//        val daysOfWeek = DayOfWeek.values()
-        val currentMonth = YearMonth.now()
-        val startMonth = currentMonth.minusMonths(5)
-        val endMonth = currentMonth.plusMonths(5)
+        // 바뀐 식물의 로그 데이터로 변경
+        assignmentDays.clear()
+        Log.d("test", "after clear(), ${assignmentDays.size}")
+        assignmentDays =
+            myPlantDatas[pos].logData.map{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) } as MutableList<CalendarDay>
+        Log.d("test", "changed assignmentDays[0] is ${assignmentDays[0]}")
 
+        // 기존에 있던 로그 데코레이터 삭제하고 새로 선택된 식물 정보로 새로 등록
+        binding.calendarView.removeDecorator(logDecorator)
+        logDecorator = CalendarLogDecorator(activity, assignmentDays as ArrayList<CalendarDay>)
+        binding.calendarView.addDecorator(logDecorator)
+
+        var selectedLog = currentItemLog.find{ CalendarDay.from(LocalDate.parse(it.date, DateTimeFormatter.ISO_DATE)) == binding.calendarView.selectedDate }
+
+        if (selectedLog != null) {
+            changeLogText(selectedLog)
+        }
+    }
+
+    fun changeLogText(log : MyPlantLogData){
         with(binding){
-            //selectedDate = today  // selectedDate는 today 날짜로 초기화 -> today는 계속 선택layout 적용된 상태가 됨.
-            Log.d("test", "init selectedDate to $today")
-            calendarView.setup(startMonth, endMonth, DayOfWeek.SUNDAY)
-            Log.d("test", "scrolling to $currentMonth")
-            calendarView.scrollToDate(currentMonth.atDay(today.dayOfMonth))  // 애니메이션 없음
-//            legendLayout.root.children.forEachIndexed { index, view ->
-//                (view as TextView).apply {
-//                    text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH).uppercase(Locale.ENGLISH)
-//                    setTextColor(Color.WHITE)
-//                }
-//            }
-        }
+            if(log.caring)
+                caringText.text = "살펴보기 완료!"
+            else
+                caringText.text = "살펴보기 미완료"
 
-        //  view container which acts as a view holder for each date cell
-        //  The view passed in here is the inflated day view resource which you provided.
-        class DayViewContainer(view: View) : ViewContainer(view) {
-            // will be set when this container is bound. See the DayBinder.
-            private val calendarView = binding.calendarView
-            val textView = ItemCalendarDayBinding.bind(view).itemCalendarDayText
+            if(log.repotting)
+                repottingText.text = "분갈이 완료!"
+            else
+                repottingText.text = "분갈이 미완료"
 
-            lateinit var day: CalendarDay
+            if(log.sunlight)
+                sunlightText.text = "광합성 완료!"
+            else
+                sunlightText.text = "광합성 미완료"
 
-            init{
-                // 날짜 클릭 이벤트
-                view.setOnClickListener{
-                    Log.d("test", "date clicked, selectedDate:"+selectedDate.toString())
-                    // Check the day owner as we do not want to select in or out dates.
-                    if(day.owner == DayOwner.THIS_MONTH){
-                        val currentSelection = selectedDate
-                        // 같은 날짜 클릭 시 선택 취소
-                        if(currentSelection == day.date){
-                            selectedDate = null
-                            // Reload this date so the dayBinder is called
-                            // and we can REMOVE the selection background.
-                            calendarView.notifyDateChanged(currentSelection)
-                        }
-                        // 새로 선택한 날짜이면 새로 선택한 날짜로 변경
-                        else{
-                            selectedDate = day.date
-                            // 새로 선택된 날짜 reload -> dayBinder 호출, selection background 추가하도록
-                            calendarView.notifyDateChanged(day.date)
-                            if(currentSelection != null){
-                                // 이전에 선택된 날짜 reload -> selection background 제거
-                                calendarView.notifyDateChanged(currentSelection)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        class MonthViewContainer(view: View) : ViewContainer(view) {
-            val textView = view.findViewById<TextView>(R.id.textCalendarHeader)
-        }
-        binding.calendarView.monthHeaderBinder = object: MonthHeaderFooterBinder<MonthViewContainer> {
-            override fun create(view: View) = MonthViewContainer(view)
-            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
-//                container.textView.text = "${month.yearMonth.month.name.lowercase().capitalize()} ${month.year}"
-            }
-        }
-
-        binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
-            // called only when a new container is needed
-            override fun create(view: View) = DayViewContainer(view)
-
-            // called every time we need to reuse a container
-            override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.day = day  // calendar day for this container
-                val textView = container.textView
-                textView.text = day.date.dayOfMonth.toString()
-
-                if(day.owner == DayOwner.THIS_MONTH){
-                    Log.d("test", "selectedDate: $selectedDate")
-                    Log.d("test", "day.date: ${day.date}")
-                    Log.d("test", "selectedDate==day.date: ${selectedDate == day.date}")
-                    Log.d("test", "selectedDate == null: ${selectedDate == null}")
-                    textView.setTextColor(Color.BLACK)
-
-                    if(selectedDate == day.date)
-                        textView.setBackgroundResource(R.drawable.calendar_selected_day)
-                    else
-                        textView.background = null
-
-//                    if(selectedDate == null){
-//                        Log.d("test", "set ${textView.text} bg to null")
-//                        textView.background = null
-//                    }
-//                    else{
-//                        if(selectedDate == day.date){
-//                            Log.d("test", "selectedDate==day.date")
-//                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
-//                        }
-////                        else if(today == day.date){
-////                            Log.d("test", "today==day.date")
-////                            textView.setBackgroundResource(R.drawable.calendar_selected_day)
-////                        }
-//                        else{
-//                            Log.d("test", "set ${textView.text} bg to null")
-//                            textView.background = null
-//                        }
-//                    }
-
-                }
-                else {
-                    textView.setTextColor(Color.GRAY)
-                    textView.background = null
-                }
-            }
+            if(log.watering)
+                wateringText.text = "물 주기 완료!"
+            else
+                wateringText.text = "물 주기 미완료"
         }
     }
 }

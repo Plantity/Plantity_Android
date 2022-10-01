@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="3dp">
 
     <TextView
         android:id="@+id/legendTextSun"
@@ -12,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="SUN"
-        android:textColor="@color/red"
+        android:text="Sun"
+        android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
         android:id="@+id/legendTextMon"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="MON"
+        android:text="Mon"
         android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="TUE"
+        android:text="Tue"
         android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="WED"
+        android:text="Wed"
         android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
@@ -48,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="THU"
+        android:text="Thu"
         android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="FRI"
+        android:text="Fri"
         android:textColor="@color/black"
         android:textSize="14dp" />
     <TextView
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="SAT"
-        android:textColor="@color/blue"
+        android:text="Sat"
+        android:textColor="@color/black"
         android:textSize="14dp" />
 </LinearLayout>

@@ -217,7 +217,7 @@
         android:id="@+id/plant_add"
         android:layout_width="315dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/add_plant_button"
         android:text="내 식물로 추가하기"
         android:textColor="@color/white"

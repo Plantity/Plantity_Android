@@ -98,5 +98,3 @@ class VerticalItemDecorator(private val divHeight : Int) : RecyclerView.ItemDeco
         outRect.bottom = divHeight
     }
 }
-
-

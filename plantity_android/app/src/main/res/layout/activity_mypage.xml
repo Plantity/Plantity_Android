@@ -7,6 +7,15 @@
     android:background="#F1F1F1"
     tools:context=".mypages.MypageActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/addplant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/box"
         android:layout_width="match_parent"
@@ -20,12 +29,12 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
             android:text="마이페이지"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="24dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

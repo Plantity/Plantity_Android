@@ -1,15 +1,12 @@
 package plantity.plantity_android.main
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_main_add_card.view.*
@@ -165,8 +162,12 @@ class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.apply {
                     addPlantBtn.setOnClickListener {
                         Log.d("test", "식물 추가 버튼 클릭됨")
+//                            AddPlantDialog(binding.root.context) {
+//                                viewModel.setName(it)
+//                            }.show()
+                        AddPlantDialog(binding.root.context).show()
                     }
                 }
             }
         }
-    }
+}

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_like.*
 import plantity.plantity_android.PlantDetailActivity
 import plantity.plantity_android.R
+import plantity.plantity_android.main.AddPlantDialog
 import plantity.plantity_android.plantlogs.PlantLogActivity
 
 
@@ -31,7 +32,7 @@ class MyplantsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_myplants, container, false)
         val addbutton :ImageButton = view.findViewById(R.id.addbutton)
         addbutton.setOnClickListener {
-            //AddPlantDialog(context).show()
+            context?.let { it1 -> AddPlantDialog(it1).show() }
         }
         val fir : ImageView = view.findViewById(R.id.fir)
         val imageUrl1 = "https://www.100ssd.co.kr/news/photo/202009/71614_51734_4048.jpg"

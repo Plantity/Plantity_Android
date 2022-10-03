@@ -6,21 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_main_card.*
-import plantity.plantity_android.MainLogFragment
+import kotlinx.android.synthetic.main.item_main_add_card.view.*
+import kotlinx.android.synthetic.main.item_main_card.view.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityMainBinding
+import plantity.plantity_android.databinding.ItemMainAddCardBinding
 import plantity.plantity_android.databinding.ItemMainCardBinding
-import plantity.plantity_android.mypages.LikeFragment
 import plantity.plantity_android.plantlogs.PlantLogActivity
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -33,30 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         // adapter 생성
         val cardViewAdapter = MainCardViewAdapter()
+
         // 화면의 viewPager와 연결
         binding.mainCardViewPager.adapter = cardViewAdapter
 
         Log.d("test", "cardview item count: ${cardViewAdapter.itemCount}")
-
-//        var like = false
-//        left.setOnClickListener{
-//            if(like==true){
-//                val imageUrl = "https://www.100ssd.co.kr/news/photo/202009/71614_51734_4048.jpg"
-//                Glide.with(this).load(imageUrl).into(imageView2)
-//                dday.setText("함께한지 14일째")
-//                name.setText("새삼이")
-//                like=false
-//            }
-//        }
-//        right.setOnClickListener {
-//            if(like==false){
-//                val imageUrl =  "https://mule4.dingul.io/api/r?l=aHR0cHM6Ly90aHVtYm5haWw5LmNvdXBhbmdjZG4uY29tL3RodW1ibmFpbHMvcmVtb3RlLzQ5Mng0OTJleC9pbWFnZS92ZW5kb3JfaW52ZW50b3J5L2U1ZWMvNGI5YzQxODdjMjYyZGZiOGY2NzIyMmQzZDIzNWVhODU2YjA1NTViYWI2N2IwMTE4MDk5ZDlmMjI5OGFjLmpwZw"
-//                Glide.with(this).load(imageUrl).into(imageView2)
-//                dday.setText("함께한지 20일째")
-//                name.setText("꺅둥이")
-//                like=true
-//            }
-//        }
     }
 
     fun setNavBarFragment(title:String){
@@ -76,41 +53,121 @@ class MainActivity : AppCompatActivity() {
 }
 
 // 더미 데이터로 식물 닉네임만 전달
-class MainCardViewAdapter(var items: ArrayList<String> = arrayListOf("찌니꾸", "때따미")): RecyclerView.Adapter<MainCardViewAdapter.MainCardHolder>(){
+class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val dummy = arrayListOf<MyPlantData>(
+        MyPlantData("찌니꾸", "몬스테라", USER_PLANT),
+        MyPlantData("때따미", "선인장", USER_PLANT),
+        MyPlantData("식물추가", "식물추가", ADD_PLANT)
+    )
+
     // 표시되는 뷰의 정보를 넘겨주기
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainCardHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         // 표시되는 view의 정보를 넘겨줘야 해서 3개의 인자를 전달
-        val binding = ItemMainCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainCardHolder(binding)
+        return when (viewType) {
+            USER_PLANT -> {
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main_card, parent, false)
+//                MainCardHolder(view)
+                MainCardHolder(
+                    ItemMainCardBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+            else -> {
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main_add_card, parent, false)
+//                MainCardHolder(view)
+                AddCardHolder(
+                    ItemMainAddCardBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+        }
+//        val binding = ItemMainCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+//        return MainCardHolder(binding)
     }
     // 한 화면에 보이는 개수만큼 호출
-    override fun onBindViewHolder(holder: MainCardHolder, position: Int) {
-        // 사용할 데이터 꺼내기
-        val item = items[position]
-        // holder에 데이터 전달
-        holder.setData(item)
+//    override fun onBindViewHolder(holder: MainCardHolder, position: Int) {
+//        // 사용할 데이터 꺼내기
+//        val item = dummy[position]
+//        // holder에 데이터 전달
+//        holder.setData(item)
+//    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (dummy[position].cardType) {
+            USER_PLANT -> {
+                (holder as MainCardHolder).bind(dummy[position])
+                //holder.setIsRecyclable(false)
+            }
+            ADD_PLANT -> {
+                (holder as AddCardHolder).bind(dummy[position])
+                //(holder as AddCardHolder).setIsRecyclable(false)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return dummy.size
     }
 
-    class MainCardHolder(val binding: ItemMainCardBinding): RecyclerView.ViewHolder(binding.root){
-        lateinit var currentItem:String
+    override fun getItemViewType(position: Int): Int {
+        return dummy[position].cardType
+    }
 
-        init{
-            binding.moveToLogBtn.setOnClickListener {
+    inner class MainCardHolder(val binding: ItemMainCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        //private lateinit var nickName: TextView
 
-                val intent = Intent(binding.moveToLogBtn.context, PlantLogActivity::class.java)
-                // 인텐트로 현재 식물이 무엇인지 정보 넘겨야 함 -> putExtra()
-                startActivity(binding.moveToLogBtn.context, intent, null)
-                // finish() 해야 하나?
+//        init{
+//            nickName = mainView.findViewById(R.id.nickName)
+//            itemView.moveToLogBtn.setOnClickListener {
+//                val intent = Intent(itemView.moveToLogBtn.context, PlantLogActivity::class.java)
+//                // 인텐트로 현재 식물이 무엇인지 정보 넘겨야 함 -> putExtra()
+//                startActivity(itemView.moveToLogBtn.context, intent, null)
+//                // finish() 해야 하나?
+//            }
+//        }
+
+        // data: 식물 이름(더미)
+        fun bind(item: MyPlantData) {
+            binding.apply {
+                nickName.text = item.nickname
+                moveToLogBtn.setOnClickListener {
+                    val intent = Intent(itemView.moveToLogBtn.context, PlantLogActivity::class.java)
+                    // 인텐트로 현재 식물이 무엇인지 정보 넘겨야 함 -> putExtra()
+                    startActivity(itemView.moveToLogBtn.context, intent, null)
+                    // finish() 해야 하나?
+                }
+                //nickName.text = item.nickname
+//            Toast.makeText(binding.root as context, "현재 식물: ${item.nickname}", Toast.LENGTH_SHORT).show()
             }
         }
-
-        fun setData(data: String){
-            currentItem = data
-            binding.plantName.text = data
-        }
     }
+
+        inner class AddCardHolder(val binding: ItemMainAddCardBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+//       init{
+//           itemView.addPlantBtn.setOnClickListener {
+//                Toast.makeText(context, "식물 추가 버튼이 클릭되었습니다.", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+            //        // data: 식물 이름(더미)
+            fun bind(item: MyPlantData) {
+                binding.apply {
+                    addPlantBtn.setOnClickListener {
+                        Log.d("test", "식물 추가 버튼 클릭됨")
+//                            AddPlantDialog(binding.root.context) {
+//                                viewModel.setName(it)
+//                            }.show()
+                        AddPlantDialog(binding.root.context).show()
+                    }
+                }
+            }
+        }
 }

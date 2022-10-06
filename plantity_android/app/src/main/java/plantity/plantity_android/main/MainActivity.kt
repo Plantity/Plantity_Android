@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.item_main_card.view.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
@@ -51,8 +52,12 @@ class MainActivity : AppCompatActivity() {
             setPageTransformer(transform)
         }
 
-
-
+        // 카드 뷰 인디케이터 추가
+//        val dotsIndicator = binding.dotsIndicator
+//        dotsIndicator.attachTo(binding.mainCardViewPager)
+        TabLayoutMediator(binding.mainTabLayout, binding.mainCardViewPager){ tab, position ->
+            // 필요한 구현?
+        }.attach()
 
         Log.d("test", "cardview item count: ${cardViewAdapter.itemCount}")
     }

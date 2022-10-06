@@ -8,11 +8,39 @@
     android:background="@drawable/main_bg">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLANTITY"
+            android:textColor="#418319"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/main_tv_subTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="plan your plants" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/infolinearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginTop="12dp"
+
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -23,6 +51,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -32,7 +61,8 @@
                 android:text="고해주"
                 android:textAlignment="center"
                 android:textColor="#2E2E2E"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/main_tv_rank"
@@ -50,6 +80,7 @@
             android:id="@+id/main_tv_rankDef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="벌써 레벨2까지 왔습니다! 오늘도 민첩한 식물인이 되세요🌳"
             android:textColor="@color/black"
             android:textSize="14dp" />
@@ -63,7 +94,8 @@
                 android:id="@+id/progressBar"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginTop="5dp"
                 android:progress="75"
                 android:progressDrawable="@drawable/mypage_progressbar" />
 
@@ -73,6 +105,12 @@
                 android:text="  75 %"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_silver"/>
         </LinearLayout>
 
 
@@ -141,13 +179,15 @@
 <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 <!--    </androidx.cardview.widget.CardView>-->
 
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/mainCardViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
+        android:layout_marginTop="25dp"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
         android:foregroundGravity="center"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -155,50 +195,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infolinearLayout" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mainTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PLANTITY"
-            android:textColor="#418319"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/main_tv_subTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="plan your plants" />
-    </LinearLayout>
-
-    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dotsColor="#ffffff"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="16dp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainCardViewPager"
-        app:layout_constraintVertical_bias="0.381"
-        app:progressMode="true"
-        app:selectedDotColor="#55783E" />
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicator="@null"
+        app:tabPaddingEnd="6dp"
+        app:tabPaddingStart="6dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+<!--    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
+<!--        android:id="@+id/dots_indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:dotsColor="#ffffff"-->
+<!--        app:dotsCornerRadius="8dp"-->
+<!--        app:dotsSize="16dp"-->
+<!--        app:dotsSpacing="4dp"-->
+<!--        app:dotsWidthFactor="2.5"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/nav_bar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/mainCardViewPager"-->
+<!--        app:progressMode="true"-->
+<!--        app:selectedDotColor="#55783E" />-->
 
     <FrameLayout
         android:id="@+id/nav_bar"

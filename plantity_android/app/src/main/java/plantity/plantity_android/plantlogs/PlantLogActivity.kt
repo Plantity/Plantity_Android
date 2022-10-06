@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
 import plantity.plantity_android.databinding.ItemPlantCardBinding
-import plantity.plantity_android.search.SearchResultFragment
 import java.util.*
+import kotlin.math.abs
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
@@ -50,16 +53,30 @@ class PlantLogActivity : AppCompatActivity() {
         // adapter 생성
         val cardViewAdapter = CardViewAdapter(dummy)
         // 화면의 viewPager와 연결
-        binding.cardViewPager.adapter = cardViewAdapter
+        with(binding.cardViewPager){
+            adapter = cardViewAdapter
+            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+                // 처음 실행했을 때도 실행됨..
+                override fun onPageSelected(position: Int){
+                    // position은 0부터 시작
+                    Log.d("test", "position changed to $position")
+                    calendarFragment.handleCardSwipe(position)
+                }
+            })
 
-        binding.cardViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
-            // 처음 실행했을 때도 실행됨..
-            override fun onPageSelected(position: Int){
-                // position은 0부터 시작
-                Log.d("test", "position changed to $position")
-                calendarFragment.handleCardSwipe(position)
+            // 미리 보기
+            offscreenPageLimit = 3
+            getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+
+            val transform = CompositePageTransformer()
+            transform.addTransformer(MarginPageTransformer(30))
+
+            transform.addTransformer { page, position ->
+                val r = 1 - abs(position)
+                page.scaleY = 0.85f + r * 0.15f
             }
-        })
+            setPageTransformer(transform)
+        }
         TabLayoutMediator(binding.tabLayout, binding.cardViewPager){ tab, position ->
             // 필요한 구현?
         }.attach()

@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_gravity="center_vertical"
@@ -7,11 +8,11 @@
         android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="350dp"
-                android:layout_height="175dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 app:cardCornerRadius="10dp">
@@ -20,68 +21,105 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/plantImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:background="@drawable/rounded_corner"
-                        android:clipToOutline="true"
-                        android:src="@drawable/ic_plant_log_image"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/plantName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:text="식물 이름"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="17dp"
-                        app:layout_constraintStart_toEndOf="@+id/plantImg"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/plantImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/rounded_corner"
+                            android:clipToOutline="true"
+                            android:src="@drawable/ic_plant_log_image"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/plantType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="식물 종류"
-                        android:textColor="@color/gray"
-                        android:textSize="13dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/plantName"
-                        app:layout_constraintStart_toEndOf="@+id/plantName"
-                        app:layout_constraintTop_toTopOf="@+id/plantName" />
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="@+id/plantImg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/plantImg"
+                            app:layout_constraintTop_toTopOf="@+id/plantImg">
 
-                    <TextView
-                        android:id="@+id/helpMsg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="25dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                        android:maxWidth="160dp"
-                        android:maxLines="3"
-                        android:text="✔ 물은 7일에 한 번 주세요"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toEndOf="@+id/plantImg"
-                        app:layout_constraintTop_toBottomOf="@+id/plantName" />
+                                <TextView
+                                    android:id="@+id/plantName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
 
-                     <TextView
-                         android:id="@+id/sinceText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="Since 2022.08.02"
-                         android:textSize="10dp"
-                        android:textColor="@color/gray"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/plantImg" />
+                                    android:text="식물 이름"
+                                    android:textColor="@color/black"
+                                    android:textSize="17dp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintStart_toEndOf="@+id/plantImg"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/plantType"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:text="식물 종류"
+                                    android:textColor="@color/gray"
+                                    android:textSize="13dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/plantName"
+                                    app:layout_constraintEnd_toEndOf="@+id/helpMsg"
+                                    app:layout_constraintStart_toEndOf="@+id/plantName"
+                                    app:layout_constraintTop_toTopOf="@+id/plantName" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/helpMsg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="10dp"
+                                android:maxWidth="160dp"
+                                android:maxLines="3"
+                                android:text="✔ 물은 7일에 한 번 주세요"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/plantImg"
+                                app:layout_constraintTop_toBottomOf="@+id/plantName" />
+
+                            <TextView
+                                android:id="@+id/sinceText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="Since 2022.08.02"
+                                android:textColor="@color/gray"
+                                android:textSize="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/plantImg"
+                                app:layout_constraintTop_toBottomOf="@+id/helpMsg" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

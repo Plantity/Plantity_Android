@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_like.*
 import plantity.plantity_android.PlantDetailActivity
 import plantity.plantity_android.R
+import plantity.plantity_android.main.AddPlantDialog
 import plantity.plantity_android.plantlogs.PlantLogActivity
 
 
 class MyplantsFragment : Fragment() {
+    var mypageActivity: MypageActivity ?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,6 +30,10 @@ class MyplantsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_myplants, container, false)
+        val addbutton :ImageButton = view.findViewById(R.id.addbutton)
+        addbutton.setOnClickListener {
+            context?.let { it1 -> AddPlantDialog(it1).show() }
+        }
         val fir : ImageView = view.findViewById(R.id.fir)
         val imageUrl1 = "https://www.100ssd.co.kr/news/photo/202009/71614_51734_4048.jpg"
         Glide.with(this).load(imageUrl1).into(fir)

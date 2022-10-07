@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,11 +40,33 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginTop="12dp"
-
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLANTITY"
+            android:textColor="#418319"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/main_tv_subTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="plan your plants" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infolinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
 
@@ -58,29 +80,33 @@
                 android:id="@+id/main_tv_userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:text="고해주"
                 android:textAlignment="center"
                 android:textColor="#2E2E2E"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/main_tv_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 가드너님! "
+                android:layout_marginTop="5dp"
+                android:text="가드너님! "
                 android:textColor="#2E2E2E"
-                android:textSize="24sp" />
+                android:textSize="20dp" />
 
         </LinearLayout>
 
-<!--        다음 단계 안내 텍스트-->
+        <!--        다음 단계 안내 텍스트-->
 
         <TextView
             android:id="@+id/main_tv_rankDef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="10dp"
             android:text="벌써 레벨2까지 왔습니다! 오늘도 민첩한 식물인이 되세요🌳"
             android:textColor="@color/black"
             android:textSize="14dp" />
@@ -95,14 +121,19 @@
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="300dp"
                 android:layout_height="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="5dp"
                 android:progress="75"
                 android:progressDrawable="@drawable/mypage_progressbar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  75 %"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="5dp"
+                android:text="75 %"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -185,12 +216,14 @@
         android:id="@+id/mainCardViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foregroundGravity="center"
         android:layout_marginTop="25dp"
         android:paddingStart="45dp"
         android:paddingEnd="45dp"
         android:foregroundGravity="center"
         android:clipChildren="false"
         android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@+id/nav_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infolinearLayout" />

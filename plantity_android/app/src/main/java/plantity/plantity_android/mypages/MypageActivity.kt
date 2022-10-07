@@ -6,6 +6,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_mypage.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
+import plantity.plantity_android.main.AddPlantFragment
 import plantity.plantity_android.settings.SettingActivity
 
 class MypageActivity : AppCompatActivity() {
@@ -20,7 +21,12 @@ class MypageActivity : AppCompatActivity() {
         setFragment()
         setNavBarFragment("mypage")
     }
-
+    fun changeFragment(){
+        val addplantFragment : AddPlantFragment = AddPlantFragment()
+        val transaction5 = supportFragmentManager.beginTransaction()
+        transaction5.replace(R.id.addplant, addplantFragment)
+        transaction5.commit()
+    }
     private fun setFragment(){
         val mypagecardFragment : MypageCardFragment = MypageCardFragment()
         val transaction1 = supportFragmentManager.beginTransaction()

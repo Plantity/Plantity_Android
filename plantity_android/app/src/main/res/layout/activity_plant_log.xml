@@ -8,16 +8,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="25dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
         android:text="식물로그"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="24dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +23,7 @@
         android:id="@+id/cardViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:clipChildren="false"

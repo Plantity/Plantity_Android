@@ -14,7 +14,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,41 +23,42 @@
             android:layout_height="wrap_content"
             android:text="PLANTITY"
             android:textColor="#418319"
-            android:textSize="34sp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/main_tv_subTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14dp"
             android:text="plan your plants" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/infolinearLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/infolinearLayout"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PLANTITY"
-            android:textColor="#418319"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="PLANTITY"-->
+<!--            android:textColor="#418319"-->
+<!--            android:textSize="34sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <TextView
-            android:id="@+id/main_tv_subTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="plan your plants" />
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/main_tv_subTitle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="plan your plants" />-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/infolinearLayout"
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:text="고해주"
                 android:textAlignment="center"
                 android:textColor="#2E2E2E"
@@ -112,8 +112,8 @@
             android:textSize="14dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ProgressBar
@@ -121,19 +121,18 @@
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="300dp"
                 android:layout_height="15dp"
-                android:layout_marginLeft="5dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:progress="75"
                 android:progressDrawable="@drawable/mypage_progressbar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginRight="5dp"
-                android:text="75 %"
+                android:layout_marginEnd="5dp"
+                android:text="75%"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -216,7 +215,6 @@
         android:id="@+id/mainCardViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foregroundGravity="center"
         android:layout_marginTop="25dp"
         android:paddingStart="45dp"
         android:paddingEnd="45dp"

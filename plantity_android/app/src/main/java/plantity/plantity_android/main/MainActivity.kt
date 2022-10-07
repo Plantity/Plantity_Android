@@ -1,15 +1,17 @@
 package plantity.plantity_android.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_main_add_card.view.*
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.item_main_card.view.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
@@ -17,6 +19,8 @@ import plantity.plantity_android.databinding.ActivityMainBinding
 import plantity.plantity_android.databinding.ItemMainAddCardBinding
 import plantity.plantity_android.databinding.ItemMainCardBinding
 import plantity.plantity_android.plantlogs.PlantLogActivity
+import kotlin.math.abs
+
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -31,7 +35,29 @@ class MainActivity : AppCompatActivity() {
         val cardViewAdapter = MainCardViewAdapter()
 
         // 화면의 viewPager와 연결
-        binding.mainCardViewPager.adapter = cardViewAdapter
+        //binding.mainCardViewPager.adapter = cardViewAdapter
+        with(binding.mainCardViewPager){
+            adapter = cardViewAdapter
+            offscreenPageLimit = 3
+            getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+
+            val transform = CompositePageTransformer()
+            transform.addTransformer(MarginPageTransformer(40))
+
+            transform.addTransformer { page, position ->
+                val r = 1 - abs(position)
+                page.scaleY = 0.85f + r * 0.15f
+            }
+
+            setPageTransformer(transform)
+        }
+
+        // 카드 뷰 인디케이터 추가
+//        val dotsIndicator = binding.dotsIndicator
+//        dotsIndicator.attachTo(binding.mainCardViewPager)
+        TabLayoutMediator(binding.mainTabLayout, binding.mainCardViewPager){ tab, position ->
+            // 필요한 구현?
+        }.attach()
 
         Log.d("test", "cardview item count: ${cardViewAdapter.itemCount}")
     }

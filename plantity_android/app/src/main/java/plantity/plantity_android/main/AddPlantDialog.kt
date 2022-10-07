@@ -37,9 +37,6 @@ class AddPlantDialog(
             if (editTextNickName.text.isNullOrBlank()) {
                 Toast.makeText(context, "애칭을 입력하세요!", Toast.LENGTH_SHORT).show()
             }
-            else if(editTextDate2.text.isNullOrBlank()){
-                Toast.makeText(context, "입양날짜를 입력하세요!", Toast.LENGTH_SHORT).show()
-            }
             else {
                 /* 서버에 POST하는 코드 작성*/
                 //okCallback(profileEt.text.toString())

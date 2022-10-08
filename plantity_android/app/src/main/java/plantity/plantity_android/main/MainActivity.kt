@@ -81,8 +81,8 @@ class MainActivity : AppCompatActivity() {
 // 더미 데이터로 식물 닉네임만 전달
 class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val dummy = arrayListOf<MyPlantData>(
-        MyPlantData("찌니꾸", "몬스테라", USER_PLANT),
-        MyPlantData("때따미", "선인장", USER_PLANT),
+        MyPlantData("순식이", "몬스테라", USER_PLANT),
+        MyPlantData("순새", "선인장", USER_PLANT),
         MyPlantData("식물추가", "식물추가", ADD_PLANT)
     )
 

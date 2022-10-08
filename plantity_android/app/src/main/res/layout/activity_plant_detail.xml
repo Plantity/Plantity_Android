@@ -8,10 +8,11 @@
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="25dp"
-        android:layout_height="21dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="13dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +21,9 @@
 
     <ImageButton
         android:id="@+id/heart"
-        android:layout_width="27dp"
-        android:layout_height="21dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
         android:layout_marginEnd="25dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"

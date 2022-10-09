@@ -24,10 +24,16 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_add_plant.*
 import plantity.plantity_android.databinding.ActivityAddPlantBinding
 import plantity.plantity_android.databinding.ItemRecyclerDialogBinding
+import plantity.plantity_android.search.Content
+import plantity.plantity_android.search.SearchRepository
+import plantity.plantity_android.search.SearchResult
 
 
 class AddPlantActivity : AppCompatActivity() {
     val binding by lazy { ActivityAddPlantBinding.inflate(layoutInflater) }
+    val mainSearchRepository = MainSearchRepository()
+    var allPlantsTypeList = mutableListOf<String>()
+    var page: Int = 0
 
     private var nickName: String = ""
     private var adoptDate: String = ""  // 2022-10-8 형식
@@ -53,6 +59,8 @@ class AddPlantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setPlantsList()
 
         checkPermission.launch(permissionList)
 
@@ -86,7 +94,9 @@ class AddPlantActivity : AppCompatActivity() {
 
             selectedPlantType.setOnClickListener {
                 Log.d("test", "selectedPlantType clicked")
-                val dialog = PlantTypeDialog(binding.root.context)
+                val dialog = PlantTypeDialog(binding.root.context,
+                    allPlantsTypeList as ArrayList<String>
+                )
 //                val lp = WindowManager.LayoutParams()
 //                val windowMetrics =  windowManager.currentWindowMetrics
 ////
@@ -121,42 +131,25 @@ class AddPlantActivity : AppCompatActivity() {
         }
     }
 
-//    class DialogRecyclerAdapter(list: ArrayList<String>?) : RecyclerView.Adapter<DialogRecyclerAdapter.ViewHolder>() {
-//        private var mData: ArrayList<String>? = null
-//        lateinit var parentContext: Context
-//
-//        init {
-//            mData = list // 입력받은 list를 저장
-//        }
-//
-//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//            parentContext = parent.context // parent로부터 content 받음
-//            val binding = ItemRecyclerDialogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//            return ViewHolder(binding) // ViewHolder 반환
-//        }
-//
-//        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//            val text = mData!![position] // 어떤 포지션의 텍스트인지 조회
-//            holder.setPlantType(text) // 해당 포지션의 View item에 텍스트 입힘
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return mData!!.size
-//        }
-//
-//        inner class ViewHolder(val itemBinding : ItemRecyclerDialogBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-//            lateinit var currentPlant: String
-//
-//            init {
-//                itemBinding.root.setOnClickListener {
-//                    Toast.makeText(itemBinding.root.context, "선택된 아이템: $currentPlant", Toast.LENGTH_SHORT)
-//                    (parentContext as Activity).selected_plant_type.text = currentPlant
-//                }
-//            }
-//
-//            fun setPlantType(type: String){
-//                itemBinding.itemRecycler.text = type
-//            }
-//        }
-//    }
+    // 식물 종류로 이루어진 배열 만들기
+    fun setPlantsList(){
+        mainSearchRepository.getMainSearchPlants(page, this)
+    }
+
+    // MainSearchRepository에서 get 끝나면 호출하는 함수
+    fun loadMainSearchPlants(result: SearchResult){
+        Log.d("test", "inside loadComplete, page: $page")
+        for(plant in result.content){
+            allPlantsTypeList.add(plant.cntntsSj)
+        }
+        // 방금 불러온 페이지가 마지막이 아닌 경우
+        if(!result.last){
+            page++
+            mainSearchRepository.getMainSearchPlants(page, this)
+        }
+        // 방금 불러온 페이지가 마지막인 경우
+        else{
+            page = 0
+        }
+    }
 }

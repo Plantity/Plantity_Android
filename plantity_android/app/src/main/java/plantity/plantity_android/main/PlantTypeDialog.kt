@@ -4,7 +4,9 @@ import android.R
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Point
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.Display
@@ -14,6 +16,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_add_plant.*
@@ -22,7 +25,7 @@ import plantity.plantity_android.databinding.RecyclerDialogLayoutBinding
 
 
 //AddPlantDialog(context).show()
-class PlantTypeDialog(context: Context): Dialog(context) {
+class PlantTypeDialog(context: Context, val allPlantTypeList: ArrayList<String>): Dialog(context) {
     protected lateinit var binding: RecyclerDialogLayoutBinding
     private lateinit var recyclerAdapter : DialogRecyclerAdapter
     private lateinit var recyclerView : RecyclerView
@@ -35,14 +38,19 @@ class PlantTypeDialog(context: Context): Dialog(context) {
         // 만들어놓은 xml 뷰를 띄운다.
         binding = RecyclerDialogLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // round corner 적용돼도 끄트머리 나오는거 없애기
+        this.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         initViews()
 
-        recyclerAdapter = DialogRecyclerAdapter(arrayListOf("몬스테라", "선인장"))
-
-        //this.setCanceledOnTouchOutside(true)  // 외부 터치 시 다이얼로그 종료
+        recyclerAdapter = DialogRecyclerAdapter(allPlantTypeList)
 
         binding.dialogRecyclerView.adapter = recyclerAdapter
         binding.dialogRecyclerView.layoutManager = LinearLayoutManager(this.context)
+
+        binding.dialogRecyclerView.addItemDecoration(DividerItemDecoration(
+            context.applicationContext, (binding.dialogRecyclerView.layoutManager as LinearLayoutManager).orientation))
     }
 
     @RequiresApi(Build.VERSION_CODES.R)

@@ -19,8 +19,6 @@ import plantity.plantity_android.plantlogs.PlantLogActivity
 
 
 class MyplantsFragment : Fragment() {
-    var mypageActivity: MypageActivity ?= null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

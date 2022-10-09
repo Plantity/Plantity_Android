@@ -14,6 +14,33 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PLANTITY"
+            android:textColor="#418319"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/main_tv_subTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="plan your plants" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infolinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -46,6 +73,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -57,7 +85,8 @@
                 android:text="고해주"
                 android:textAlignment="center"
                 android:textColor="#2E2E2E"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/main_tv_rank"
@@ -107,6 +136,12 @@
                 android:text="75 %"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_silver"/>
         </LinearLayout>
 
 
@@ -175,33 +210,54 @@
 <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 <!--    </androidx.cardview.widget.CardView>-->
 
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/mainCardViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
+        android:layout_marginTop="25dp"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
+        android:foregroundGravity="center"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/nav_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infolinearLayout" />
 
-    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dotsColor="#ffffff"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="16dp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mainTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainCardViewPager"
-        app:layout_constraintVertical_bias="0.381"
-        app:progressMode="true"
-        app:selectedDotColor="#55783E" />
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicator="@null"
+        app:tabPaddingEnd="6dp"
+        app:tabPaddingStart="6dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+<!--    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
+<!--        android:id="@+id/dots_indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:dotsColor="#ffffff"-->
+<!--        app:dotsCornerRadius="8dp"-->
+<!--        app:dotsSize="16dp"-->
+<!--        app:dotsSpacing="4dp"-->
+<!--        app:dotsWidthFactor="2.5"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/nav_bar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/mainCardViewPager"-->
+<!--        app:progressMode="true"-->
+<!--        app:selectedDotColor="#55783E" />-->
 
     <FrameLayout
         android:id="@+id/nav_bar"

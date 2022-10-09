@@ -63,7 +63,7 @@
             android:id="@+id/imageView4"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/silver"
+            android:src="@drawable/ic_silver"
             app:layout_constraintBottom_toBottomOf="@+id/circle"
             app:layout_constraintStart_toStartOf="@+id/username_tv"
             app:layout_constraintTop_toBottomOf="@+id/username_tv" />

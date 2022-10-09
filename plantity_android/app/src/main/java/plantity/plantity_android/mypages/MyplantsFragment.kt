@@ -32,7 +32,8 @@ class MyplantsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_myplants, container, false)
         val addbutton :ImageButton = view.findViewById(R.id.addbutton)
         addbutton.setOnClickListener {
-            context?.let { it1 -> AddPlantDialog(it1).show() }
+            val intent = Intent(activity, AddPlantActivity::class.java)
+            startActivity(intent)
         }
         val fir : ImageView = view.findViewById(R.id.fir)
         val imageUrl1 = "https://www.100ssd.co.kr/news/photo/202009/71614_51734_4048.jpg"

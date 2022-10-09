@@ -187,11 +187,13 @@ class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             fun bind(item: MyPlantData) {
                 binding.apply {
                     addPlantBtn.setOnClickListener {
-                        Log.d("test", "식물 추가 버튼 클릭됨")
+                        Log.d("test", "식물 추가 버튼 클릭됨!")
 //                            AddPlantDialog(binding.root.context) {
 //                                viewModel.setName(it)
 //                            }.show()
-                        AddPlantDialog(binding.root.context).show()
+                        //AddPlantDialog(binding.root.context).show()
+                        val intent = Intent(binding.root.context, AddPlantActivity::class.java)
+                        startActivity(binding.root.context, intent, null)
                     }
                 }
             }

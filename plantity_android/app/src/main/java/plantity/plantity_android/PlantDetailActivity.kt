@@ -5,6 +5,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_plant_detail.*
+import plantity.plantity_android.databinding.ActivityPlantDetailBinding
+import plantity.plantity_android.databinding.FragmentAddPlantBinding
+import plantity.plantity_android.main.AddPlantDialog
 import plantity.plantity_android.search.Content
 import plantity.plantity_android.search.SearchData
 import retrofit2.Call
@@ -14,9 +17,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class PlantDetailActivity : AppCompatActivity() {
+    val binding by lazy { ActivityPlantDetailBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plant_detail)
+        setContentView(binding.root)
 
         // intent
         val plantCntntsNo = intent.getStringExtra("selectedPlant")
@@ -40,44 +45,44 @@ class PlantDetailActivity : AppCompatActivity() {
 //                    Log.d("test", "통신 성공 msg: ${response.body()!!.message}")
 //                    Log.d("test", "통신 성공 body: ${response.body()!!.result}")
                     with(response.body()!!.result){
-                        plant_photo.setImageResource(R.drawable.ic_plant_log_image) // 식물 사진
-                        plant_name.text = cntntsSj // 식물 한글 이름
+                        binding.plantPhoto.setImageResource(R.drawable.ic_plant_log_image) // 식물 사진
+                        binding.plantName.text = cntntsSj // 식물 한글 이름
 
                         when (managelevelCode){  // 난이도
-                            "089001" -> difficulty.append("⭐")
-                            "089002" -> difficulty.append("⭐⭐")
-                            "089003" -> difficulty.append("⭐⭐⭐")
+                            "089001" -> binding.difficulty.append("⭐")
+                            "089002" -> binding.difficulty.append("⭐⭐")
+                            "089003" -> binding.difficulty.append("⭐⭐⭐")
                         }
 
-                        short_comment.text = adviseInfo // 짧은 설명
+                        binding.shortComment.text = adviseInfo // 짧은 설명
 
                         if(watercycleSprngCodeNm.contains("축축")){  // 물 주기
-                            water_comment.text = "흙을 항상 축축하게 유지해주세요"
+                            binding.waterComment.text = "흙을 항상 축축하게 유지해주세요"
                         }
                         else if(watercycleSprngCodeNm.contains("촉촉")){
-                            water_comment.text = "물을 3일에 한 번씩, 흙이 마르면 주세요."
+                            binding.waterComment.text = "물을 3일에 한 번씩, 흙이 마르면 주세요."
                         }
                         else if(watercycleSprngCodeNm.contains("표면")){
-                            water_comment.text = "물을 7일에 한 번씩, 표면이 마르면 주세요."
+                            binding.waterComment.text = "물을 7일에 한 번씩, 표면이 마르면 주세요."
                         }
                         else if(watercycleSprngCodeNm.contains("대부분")){
-                            water_comment.text = "흙이 바싹 말랐을 떄 조금씩 주세요."
+                            binding.waterComment.text = "흙이 바싹 말랐을 떄 조금씩 주세요."
                         }
 
                         if(lighttdemanddoCodeNm.contains("낮은")){  // 광도
-                            sun_comment.text = "햇빛이 적은 것을 좋아해요."
+                            binding.sunComment.text = "햇빛이 적은 것을 좋아해요."
                         }
                         else if(lighttdemanddoCodeNm.contains("높은")){
-                            sun_comment.text = "햇빛을 매우 좋아해요."
+                            binding.sunComment.text = "햇빛을 매우 좋아해요."
                         }
                         else {
-                            sun_comment.text = "햇빛이 적당한 것을 좋아해요."
+                            binding.sunComment.text = "햇빛이 적당한 것을 좋아해요."
                         }
-                        name.append(plntbneNm) // 학명
-                        eng_name.append(plntzrNm) // 영문명
-                        country.append(orgplceInfo) // 원산지
-                        flower_time.append(ignSeasonCodeNm) // 개화시기
-                        flower_color.append(flclrCodeNm) // 꽃색깔
+                        binding.name.append(plntbneNm) // 학명
+                        binding.engName.append(plntzrNm) // 영문명
+                        binding.country.append(orgplceInfo) // 원산지
+                        binding.flowerTime.append(ignSeasonCodeNm) // 개화시기
+                        binding.flowerColor.append(flclrCodeNm) // 꽃색깔
                     }
                 }
                 else{  // 통신은 성공했지만 응답에 문제가 있는 경우
@@ -92,28 +97,28 @@ class PlantDetailActivity : AppCompatActivity() {
             }
         })
 
-        back_button.setOnClickListener{
+        with(binding){
+            var like = false //찜한 목록에 있는지 불러오기
+            heart.setOnClickListener{
+                if(!like){
+                    heart.setBackgroundResource(R.drawable.ic_heart_full)
+                    like = true
+                }
+                else{
+                    heart.setBackgroundResource(R.drawable.ic_heart)
+                    like = false
+                }
+
+            }
+
+            // 식물 추가 버튼
+            plantAdd.setOnClickListener {
+                AddPlantDialog(root.context).show()
+            }
+        }
+
+        binding.backButton.setOnClickListener{
             this.finish()
         }
-
-        var like = false //찜한 목록에 있는지 불러오기
-        heart.setOnClickListener{
-            if(!like){
-                heart.setBackgroundResource(R.drawable.ic_heart_full)
-                like = true
-            }
-            else{
-                heart.setBackgroundResource(R.drawable.ic_heart)
-                like = false
-            }
-
-        }
-
-        plant_add.setOnClickListener {
-
-        }
-
-        //화면 구성
-
     }
 }

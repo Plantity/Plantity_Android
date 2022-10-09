@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="plantity.plantity_android">
     <!-- 서버 통신 및 카카오 로그인을 위한 인터넷 권한 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".GlobalApplication"
@@ -13,25 +16,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plantity_Android"
         android:usesCleartextTraffic="true">
-
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao00e76c39754ce94d507a356e3f330371" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
-            android:noHistory="true"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".PlantDetailActivity"
             android:exported="false" />
@@ -63,6 +66,10 @@
         <activity
             android:name=".main.MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".main.AddPlantActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AddPlantDialog"/>
         <activity
             android:name=".starts.SplashActivity"
             android:exported="true">

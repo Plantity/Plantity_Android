@@ -23,6 +23,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="20dp"
         android:padding="7dp"
+        android:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/tv_addPlant_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_addPlant_title"
@@ -38,30 +39,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title"
         />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/plant_image"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title"
+        />
     <!--    <FrameLayout-->
-<!--        android:id="@+id/frameLayout"-->
-<!--        android:layout_width="220dp"-->
-<!--        android:layout_height="222dp"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title">-->
-<!--        -->
-<!--        <ImageView-->
-<!--            android:id="@+id/addView_image"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:background="@drawable/rounded_corner" />-->
+    <!--        android:id="@+id/frameLayout"-->
+    <!--        android:layout_width="220dp"-->
+    <!--        android:layout_height="222dp"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title">-->
+    <!--        -->
+    <!--        <ImageView-->
+    <!--            android:id="@+id/addView_image"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:background="@drawable/rounded_corner" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/addview_imgaddbutton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:background="@drawable/rounded_corner"-->
-<!--            app:srcCompat="@drawable/add_button" />-->
-<!--    </FrameLayout>-->
+    <!--        <ImageView-->
+    <!--            android:id="@+id/addview_imgaddbutton"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:background="@drawable/rounded_corner"-->
+    <!--            app:srcCompat="@drawable/add_button" />-->
+    <!--    </FrameLayout>-->
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -82,15 +91,15 @@
             android:text="식물 종류"
             android:textSize="16dp" />
 
-        <EditText
+        <TextView
+            android:id="@+id/selected_plant_type"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
+            android:clickable="true"
             android:background="@drawable/item_readonly_edittext"
-            android:enabled="false"
-            android:inputType="text"
-            />
+            android:focusable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -183,4 +192,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,24 +1,38 @@
 package plantity.plantity_android.main
 
 import android.Manifest
+import android.R
+import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_add_plant.*
 import plantity.plantity_android.databinding.ActivityAddPlantBinding
+import plantity.plantity_android.databinding.ItemRecyclerDialogBinding
+
 
 class AddPlantActivity : AppCompatActivity() {
     val binding by lazy { ActivityAddPlantBinding.inflate(layoutInflater) }
 
     private var nickName: String = ""
     private var adoptDate: String = ""  // 2022-10-8 형식
+
+//    private val recyclerAdapter = DialogRecyclerAdapter(arrayListOf("몬스테라", "선인장"))
 
     private val permissionList = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
     private val checkPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
@@ -35,12 +49,11 @@ class AddPlantActivity : AppCompatActivity() {
             .into(binding.plantImage)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)  // 없으면 datepicker 리스너 등록이 안됨
+    @RequiresApi(Build.VERSION_CODES.R)  // 없으면 datepicker 리스너 등록이 안됨
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        Log.d("test", "inside addplantactivity")
         checkPermission.launch(permissionList)
 
         with(binding){
@@ -71,15 +84,79 @@ class AddPlantActivity : AppCompatActivity() {
                 }
             }
 
+            selectedPlantType.setOnClickListener {
+                Log.d("test", "selectedPlantType clicked")
+                val dialog = PlantTypeDialog(binding.root.context)
+//                val lp = WindowManager.LayoutParams()
+//                val windowMetrics =  windowManager.currentWindowMetrics
+////
+//                // Dialog layout 선언
+//                lp.copyFrom(dialog.window!!.attributes)
+////         width = size.x;
+//                //val width: Int = display.getSize()
+//                val width: Int = windowMetrics.bounds.width()
+//                val height: Int = windowMetrics.bounds.height()
+//                lp.width = width * 80 / 100 // 사용자 화면의 80%
+//                //lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+//                lp.height = height * 70/100
+//
+//                dialog.window!!.attributes = lp // 지정한 너비, 높이 값 Dialog에 적용
+                dialog.show()
+                dialog.setOnOKClickedListener { content ->
+                    selectedPlantType.text = content
+                }
+            }
+
+            // 이미지 추가 버튼 -> 수정 필요
             imageAddBtn.setOnClickListener {
                 readImage.launch("image/*")
                 it.isEnabled = false
                 it.visibility = View.INVISIBLE
             }
 
+            // 창 닫기 버튼
             addViewClosebutton.setOnClickListener{
                 finish()
             }
         }
     }
+
+//    class DialogRecyclerAdapter(list: ArrayList<String>?) : RecyclerView.Adapter<DialogRecyclerAdapter.ViewHolder>() {
+//        private var mData: ArrayList<String>? = null
+//        lateinit var parentContext: Context
+//
+//        init {
+//            mData = list // 입력받은 list를 저장
+//        }
+//
+//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//            parentContext = parent.context // parent로부터 content 받음
+//            val binding = ItemRecyclerDialogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+//            return ViewHolder(binding) // ViewHolder 반환
+//        }
+//
+//        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//            val text = mData!![position] // 어떤 포지션의 텍스트인지 조회
+//            holder.setPlantType(text) // 해당 포지션의 View item에 텍스트 입힘
+//        }
+//
+//        override fun getItemCount(): Int {
+//            return mData!!.size
+//        }
+//
+//        inner class ViewHolder(val itemBinding : ItemRecyclerDialogBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+//            lateinit var currentPlant: String
+//
+//            init {
+//                itemBinding.root.setOnClickListener {
+//                    Toast.makeText(itemBinding.root.context, "선택된 아이템: $currentPlant", Toast.LENGTH_SHORT)
+//                    (parentContext as Activity).selected_plant_type.text = currentPlant
+//                }
+//            }
+//
+//            fun setPlantType(type: String){
+//                itemBinding.itemRecycler.text = type
+//            }
+//        }
+//    }
 }

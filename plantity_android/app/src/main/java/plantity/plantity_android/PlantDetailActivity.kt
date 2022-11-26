@@ -1,12 +1,15 @@
 package plantity.plantity_android
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import plantity.plantity_android.databinding.ActivityPlantDetailBinding
 import plantity.plantity_android.databinding.FragmentAddPlantBinding
+import plantity.plantity_android.main.AddPlantActivity
 import plantity.plantity_android.main.AddPlantDialog
 import plantity.plantity_android.search.Content
 import plantity.plantity_android.search.SearchData
@@ -113,7 +116,9 @@ class PlantDetailActivity : AppCompatActivity() {
 
             // 식물 추가 버튼
             plantAdd.setOnClickListener {
-                AddPlantDialog(root.context).show()
+                // AddPlantDialog(root.context).show()
+                val intent = Intent(binding.root.context, AddPlantActivity::class.java)
+                ContextCompat.startActivity(binding.root.context, intent, null)
             }
         }
 

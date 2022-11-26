@@ -8,6 +8,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/* 파일 삭제 예정 */
+/*
 class PlantDetailRepository {
     fun getSearchPlants(page: Int, mCallback: SearchActivity){
         Log.d("test", "inside SearchRepository")
@@ -37,4 +39,4 @@ class PlantDetailRepository {
             }
         })
     }
-}
+}*/

@@ -40,7 +40,7 @@ class SearchAdapter(private var plantsList: MutableList<Content>): RecyclerView.
 
     // 전체 데이터 개수 리턴
     override fun getItemCount(): Int {
-        return plantsList!!.size
+        return plantsList.size
     }
 
     fun setPlantList(list: MutableList<Content>){

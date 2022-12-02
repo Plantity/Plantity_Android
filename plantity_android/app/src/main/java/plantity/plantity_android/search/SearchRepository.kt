@@ -8,7 +8,7 @@ import retrofit2.Response
 class SearchRepository {
     fun getSearchPlants(page: Int, mCallback: SearchActivity){
         Log.d("test", "inside SearchRepository")
-        val call = SearchClient.service.loadPlants(page, 10)
+        val call = RetrofitClient.service.loadPlants(page, 10)
 
         call.enqueue(object: Callback<SearchData> {  // enqueue: 비동기 방식으로 통신 요청
             override fun onResponse(  // 통신에 성공한 경우

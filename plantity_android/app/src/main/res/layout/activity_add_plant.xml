@@ -29,23 +29,26 @@
         app:layout_constraintTop_toTopOf="@+id/tv_addPlant_title"
         app:srcCompat="@drawable/ic_baseline_clear_24" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/image_add_btn"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        android:src="@drawable/add_button"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title"
-        />
+<!--    <androidx.appcompat.widget.AppCompatImageButton-->
+<!--        android:id="@+id/image_add_btn"-->
+<!--        android:layout_width="210dp"-->
+<!--        android:layout_height="210dp"-->
+<!--        android:src="@drawable/add_button"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title"-->
+<!--        />-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/plant_image"
+        android:layout_marginTop="10dp"
         android:layout_width="210dp"
         android:layout_height="210dp"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_addPlant_title"
+        android:src="@drawable/add_button"
         />
     <!--    <FrameLayout-->
     <!--        android:id="@+id/frameLayout"-->
@@ -80,7 +83,7 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_add_btn">
+        app:layout_constraintTop_toBottomOf="@+id/plant_image">
 
         <TextView
             android:id="@+id/textView7"

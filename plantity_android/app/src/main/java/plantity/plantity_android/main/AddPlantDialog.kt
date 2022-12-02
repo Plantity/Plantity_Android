@@ -1,20 +1,18 @@
 package plantity.plantity_android.main
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat.startActivityForResult
 import plantity.plantity_android.databinding.FragmentAddPlantBinding
 
 const val GET_GALLERY_IMAGE = 200
 
+/* 추후에 정리하면서 파일 삭제 */
 class AddPlantDialog(
     context: Context,
     //private val okCallback: (String) -> Unit,

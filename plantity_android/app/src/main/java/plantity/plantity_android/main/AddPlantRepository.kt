@@ -4,7 +4,7 @@ import android.util.Log
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import plantity.plantity_android.search.SearchClient
+import plantity.plantity_android.search.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +22,7 @@ class AddPlantRepository {
         val plantAdaptTimeBody: RequestBody = RequestBody.create(MediaType.parse("application/json"), newPlant.plantAdaptTime)
 
         // POST 요청
-        val call = SearchClient.addPlantService.postNewPlant(userId, newPlant.cntntsNo, imageBody, plantNameBody, plantNickNameBody, plantAdaptTimeBody)
+        val call = RetrofitClient.addPlantService.postNewPlant(userId, newPlant.cntntsNo, imageBody, plantNameBody, plantNickNameBody, plantAdaptTimeBody)
 
         call.enqueue(object: Callback<AddPlantResponse> {
             override fun onResponse(call: Call<AddPlantResponse>, response: Response<AddPlantResponse>) {

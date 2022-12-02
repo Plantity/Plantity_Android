@@ -1,7 +1,7 @@
 package plantity.plantity_android.main
 
 import android.util.Log
-import plantity.plantity_android.search.SearchClient
+import plantity.plantity_android.search.RetrofitClient
 import plantity.plantity_android.search.SearchData
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,7 +10,7 @@ import retrofit2.Response
 class MainSearchRepository {
     fun getMainSearchPlants(page: Int, mCallback: AddPlantActivity){
         Log.d("test", "inside MainSearchRepository")
-        val call = SearchClient.service.loadPlants(page, 10)
+        val call = RetrofitClient.service.loadPlants(page, 10)
 
         call.enqueue(object: Callback<SearchData> {  // enqueue: 비동기 방식으로 통신 요청
             override fun onResponse(  // 통신에 성공한 경우

@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 // object명 Retrofit으로 변경해서 서버 연동 필요한 모든 곳에서 사용??
-object SearchClient {
+object RetrofitClient {
     private const val baseUrl = "http://plantity.shop/"
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)

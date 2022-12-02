@@ -2,7 +2,7 @@ package plantity.plantity_android
 
 import android.util.Log
 import plantity.plantity_android.search.SearchActivity
-import plantity.plantity_android.search.SearchClient
+import plantity.plantity_android.search.RetrofitClient
 import plantity.plantity_android.search.SearchData
 import retrofit2.Call
 import retrofit2.Callback

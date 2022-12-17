@@ -26,6 +26,7 @@ class AddPlantRepository {
 
         call.enqueue(object: Callback<AddPlantResponse> {
             override fun onResponse(call: Call<AddPlantResponse>, response: Response<AddPlantResponse>) {
+                Log.d("test", "식물 등록! $response")
                 if(response.body()!!.isSuccess) {
                     Log.d("test","======== 식물 등록 ${response.body()!!.isSuccess} =========")
                     Log.d("test", "통신 성공 code: ${response.body()!!.code}")

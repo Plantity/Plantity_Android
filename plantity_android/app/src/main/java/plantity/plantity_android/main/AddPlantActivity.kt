@@ -129,7 +129,7 @@ class AddPlantActivity : AppCompatActivity() {
                     /* 서버에 POST */
                     /////////////// userId 수정 필요!!! /////////////
                     //addPlantRepository.postPlantToServer(imageFile, plantType, nickName, adoptDate, plantNo, 220)
-                    addPlantRepository.postPlantToServer(AddPlantData(imageFile, plantType, nickName, adoptDate, plantNo), 220)
+                    addPlantRepository.postPlantToServer(AddPlantData(imageFile, plantType, nickName, adoptDate, plantNo), 222)
                     Toast.makeText(this@AddPlantActivity, "${adoptDate}에 입양한 $nickName 추가 완료!", Toast.LENGTH_SHORT).show()
                     finish()
                 }

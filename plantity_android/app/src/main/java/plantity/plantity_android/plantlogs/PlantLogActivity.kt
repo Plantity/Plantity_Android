@@ -1,18 +1,20 @@
 package plantity.plantity_android.plantlogs
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityPlantLogBinding
@@ -22,13 +24,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.util.*
 import kotlin.math.abs
 
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
     val calendarFragment by lazy { CalendarFragment() }
-    var myPlantsList = mutableListOf<MyPlantInfo>()
+    val userId: Int = 222  // 임시 유저 아이디
+    val myPlantListRepository = MyPlantsRepository()
+
+    var myPlantList = mutableListOf<MyPlantInfo>()  // 내 식물 아이디 컬렉션
+    var myPlantDetailList = mutableListOf<MyPlantDetail>()
+
     lateinit var cardViewAdapter: CardViewAdapter
 
     // 식물 2개 만들어서 확인하기
@@ -55,7 +61,8 @@ class PlantLogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         /* 데이터 먼저 가져오기!! */
-        getMyPlantList(200)
+        // getMyPlantList(userId) { getPlantDetail() }
+        myPlantListRepository.getMyPlantList(userId, ::setPlantList)
 
         setFragment()  // -> 처음엔 bundle로 보내놓고 calendar fragment 내부에 변수로 저장해두기
         setNavBarFragment("log")
@@ -103,6 +110,13 @@ class PlantLogActivity : AppCompatActivity() {
         // layout manager 설정?
     }
 
+    private fun setPlantList(list: List<MyPlantInfo>){
+        myPlantList.addAll(list)
+        Log.d("test", "myPlantList size: ${myPlantList.size}")
+        setCardViewAdapter()
+        // getPlantDetail()
+    }
+
     private fun setFragment(){
         val bundle = bundleOf("myPlantDatas" to dummy)
         val transaction = supportFragmentManager.beginTransaction()
@@ -126,36 +140,52 @@ class PlantLogActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    //////// 서버에게 내 식물 리스트 GET 요청 ////////
-    private fun getMyPlantList(userId: Int){
-        val call = RetrofitClient.myPlantService.getMyPlants(userId)
-        //Thread{
-            call.enqueue(object: Callback<MyPlants> {
-                override fun onResponse(call: Call<MyPlants>, response: Response<MyPlants>) {  // 통신 성공
-                    Log.d("test", "======= 내 식물 조희 ${response.body()!!.isSuccess} =======")
-                    if(response.body()!!.isSuccess) {  // 응답 잘 받은 경우
-                        Log.d("test", "서버 code: ${response.body()!!.code}")
-                        Log.d("test", "서버 msg: ${response.body()!!.message}")
-                        Log.d("test", "서버 body: ${response.body()!!}")
-                        myPlantsList.addAll(response.body()!!.result)
-                        setCardviewAdapter()
-                    }
-                    else{  // 통신은 성공했지만 응답에 문제가 있는 경우
-                        Log.d("test", "Error!! 서버 code: ${response.body()!!.code}")
-                        Log.d("test", "Error!! 서버 msg: ${response.body()!!.message}")
-                    }
+    private fun getMyPlantDetail(userId: Int, plantId: Int){
+        val call = RetrofitClient.myPlantDetailService.getMyPlantDetail(userId, plantId)
+        call.enqueue(object: Callback<MyPlantDetailResponse>{
+            override fun onResponse(
+                call: Call<MyPlantDetailResponse>,
+                response: Response<MyPlantDetailResponse>
+            ) {
+                //Log.d("test", "서버 body: ${response.body()!!}")
+                Log.d("test", "======= 내 식물 상세 조희 ${response.body()!!.isSuccess} =======")
+                if(response.body()!!.isSuccess){
+                    Log.d("test", "서버 code: ${response.body()!!.code}")
+                    Log.d("test", "서버 msg: ${response.body()!!.message}")
+                    Log.d("test", "서버 body: ${response.body()!!}")
+                    myPlantDetailList.add(response.body()!!.result)  // 해당 아이디의 식물 정보 컬렉션에 추가
                 }
+                else{
+                    Log.d("test", "Error!! 서버 code: ${response.body()!!.code}")
+                    Log.d("test", "Error!! 서버 msg: ${response.body()!!.message}")
+                }
+            }
 
-                override fun onFailure(call: Call<MyPlants>, t: Throwable) {  // 통신 실패
-                    Log.d("test", "======= 내 식물 조희 실패, code: ${t.message} =======")
-                }
-            })
-        //}.start()
+            override fun onFailure(call: Call<MyPlantDetailResponse>, t: Throwable) {
+                Log.d("test", "======= 내 식물 상세 조희 실패, code: ${t.message} =======")
+            }
+        })
     }
 
-    private fun setCardviewAdapter(){
-        cardViewAdapter = CardViewAdapter(myPlantsList as ArrayList<MyPlantInfo>)
-        Log.d("test", "setCardViewAdapter, ${myPlantsList.size}")
+//    private fun getPlantDetail() {
+//        Log.d("test", "myPlantIdList size: ${myPlantIdList.size}")
+//        //myPlantIdList.map { getMyPlantDetail(userId, it) }
+//        //setCardViewAdapter()
+//        CoroutineScope(Dispatchers.Main).launch {
+//            launch {
+//                myPlantIdList.map { getMyPlantDetail(userId, it)}
+//            }.join()
+//
+//            launch {
+//                setCardViewAdapter()
+//            }
+//        }
+//    }
+
+    private fun setCardViewAdapter(){
+        //cardViewAdapter = CardViewAdapter(myPlantsList as ArrayList<MyPlantInfo>)
+        cardViewAdapter = CardViewAdapter(myPlantList as ArrayList<MyPlantInfo>)
+        Log.d("test", "setting CardViewAdapter, ${myPlantList.size}")
 
         // 화면의 viewPager와 연결
         with(binding.cardViewPager){
@@ -169,7 +199,7 @@ class PlantLogActivity : AppCompatActivity() {
                 }
             })
 
-            // 미리 보기
+            // 카드뷰 양쪽으로 미리 보기
             offscreenPageLimit = 3
             getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
 
@@ -216,8 +246,11 @@ class CardViewAdapter(var items: ArrayList<MyPlantInfo>): RecyclerView.Adapter<C
             binding.plantName.text = data.plantNickName
             binding.plantType.text = data.plantName
             binding.sinceText.text = "Since ${data.plantAdaptTime}"
-            if(data.filepath != null)
-                binding.plantImg.setImageURI(Uri.fromFile(File(data.filepath)))
+            // binding.plantImg.setImageURI(Uri.fromFile(File(data.filePath)))
+            Glide.with(binding.root.context)
+                .load(data.filePath)
+                .into(binding.plantImg)
+
         }
     }
 }

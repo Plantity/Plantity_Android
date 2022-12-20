@@ -3,6 +3,7 @@ package plantity.plantity_android.guideline
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,10 +14,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_guide_line.*
 import plantity.plantity_android.NavBarFragment
 import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityGuideLineBinding
+import kotlin.math.abs
 
 
 private const val NUM_PAGES = 5
@@ -33,32 +36,27 @@ class GuideLineActivity : AppCompatActivity() {
         setContentView(binding.root)
         setNavBarFragment("guide")
         cardviewPager = mBinding!!.pager
+
+
         val cardViewAdapter = cardPagerAdapter(this)
 
-// 카드뷰 미리보기
-//        cardviewPager.setClipToPadding(false)
-//        cardviewPager.setClipChildren(false)
-//        cardviewPager.setOffscreenPageLimit(3)
+        with(cardviewPager){
+            adapter = cardViewAdapter
 
-//        val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin) // dimen 파일 안에 크기를 정의해두었다.
-//        val pagerWidth = resources.getDimensionPixelOffset(R.dimen.pageWidth) // dimen 파일이 없으면 생성해야함
-//        val screenWidth = resources.displayMetrics.widthPixels // 스마트폰의 너비 길이를 가져옴
-//        val offsetPx = screenWidth - pageMarginPx - pagerWidth
-//
-//        cardviewPager.setPageTransformer { page, position ->
-//            page.translationX = position * -offsetPx
-//        }
+            // 카드뷰 양쪽으로 미리 보기
+            offscreenPageLimit = 3
+            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
-//        pager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER)
-//
-//        val compositePageTransformer = CompositePageTransformer()
-//        compositePageTransformer.addTransformer(MarginPageTransformer(40))
-//        compositePageTransformer.addTransformer { page, position ->
-//            val r = 1 - Math.abs(position)
-//            page.scaleY = 0.90f + r * 0.10f
-//        }
+            val transform = CompositePageTransformer()
+            transform.addTransformer(MarginPageTransformer(5))
 
-//        cardviewPager.setPageTransformer(compositePageTransformer)
+            transform.addTransformer { page, position ->
+                val r = 1 - abs(position)
+                page.scaleY = 0.85f + r * 0.15f
+            }
+            setPageTransformer(transform)
+        }
+
         cardviewPager.adapter = cardViewAdapter
         pager.setOnClickListener{
             val intent = Intent(this, GuideLineDetailActivity::class.java)

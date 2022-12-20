@@ -130,6 +130,9 @@ class CalendarFragment : Fragment() {
                     if (selectedLog != null) {
                         changeLogText(selectedLog)
                     }
+                    else{
+                        changeLogText(MyPlantLogData(selectedDate.toString(), false, false, false, false))
+                    }
                 }
             })
         }

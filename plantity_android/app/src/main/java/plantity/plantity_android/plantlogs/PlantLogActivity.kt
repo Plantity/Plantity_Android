@@ -1,6 +1,5 @@
 package plantity.plantity_android.plantlogs
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,7 +28,7 @@ import kotlin.math.abs
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
     val calendarFragment by lazy { CalendarFragment() }
-    val userId: Int = 220  // 임시 유저 아이디
+    val userId: Int = 1  // 임시 유저 아이디
     val myPlantListRepository = MyPlantsRepository()
 
     var myPlantList = mutableListOf<MyPlantInfo>()  // 내 식물 아이디 컬렉션
@@ -39,21 +38,34 @@ class PlantLogActivity : AppCompatActivity() {
 
     // 식물 2개 만들어서 확인하기
     private var plant1Log = arrayListOf(
-        MyPlantLogData("2022-09-07",true, true, true, true),
-        MyPlantLogData("2022-09-10", false, false, true, true),
-        MyPlantLogData("2022-09-14", true, false, true, false)
+        MyPlantLogData("2022-11-26",true, true, true, true),
+        MyPlantLogData("2022-12-07",true, true, true, true),
+        MyPlantLogData("2022-12-10", false, false, true, true),
+        MyPlantLogData("2022-12-19", true, false, true, false)
     )
     private var plant1 = MyPlantData("꺅둥이", "몬스테라", "2022-08-14", plant1Log)
 
     private var plant2Log = arrayListOf(
-        MyPlantLogData("2022-09-09",false, false, true, false),
-        MyPlantLogData("2022-09-11", true, false, true, true),
-        MyPlantLogData("2022-09-15", true, false, false, false)
+        MyPlantLogData("2022-11-25",true, true, true, true),
+        MyPlantLogData("2022-12-07",false, true, true, false),
+        MyPlantLogData("2022-12-09",false, false, true, false),
+        MyPlantLogData("2022-12-11", true, false, true, true),
+        MyPlantLogData("2022-12-15", true, false, false, false)
     )
     private var plant2 = MyPlantData("새삼이", "다육선인장", "2022-09-01", plant2Log)
+
+    private var plant3Log = arrayListOf(
+        MyPlantLogData("2022-11-20",true, true, true, true),
+        MyPlantLogData("2022-12-07",false, true, true, false),
+        MyPlantLogData("2022-12-11", true, false, true, true),
+        MyPlantLogData("2022-12-19", true, false, false, false)
+    )
+    private var plant3 = MyPlantData("순식이", "다육선인장", "2022-09-01", plant3Log)
+
     private var dummy = arrayListOf(
         plant1,
-        plant2
+        plant2,
+        plant3
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

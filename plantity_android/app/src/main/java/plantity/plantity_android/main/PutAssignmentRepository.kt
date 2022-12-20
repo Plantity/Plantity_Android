@@ -15,7 +15,7 @@ class PutAssignmentRepository {
                 call: Call<PostAssignmentDTO>,
                 response: Response<PostAssignmentDTO>
             ) {
-                // Log.d("test", "식물 등록! $response")
+                Log.d("test", "물 주기 과제!! $response")
                 if(response.body()!!.success) {
                     Log.d("test","======== 물주기 과제 ${response.body()!!.success} =========")
                     Log.d("test", "통신 성공 msg: ${response.body()!!.msg}")

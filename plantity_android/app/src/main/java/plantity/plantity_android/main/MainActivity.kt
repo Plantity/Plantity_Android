@@ -1,11 +1,14 @@
 package plantity.plantity_android.main
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     val userId: Int = 1  // 임시 유저 아이디
     val myPlantListRepository = MyPlantsRepository()
+
 
     var myPlantList = mutableListOf<MainPlantData>()  // 내 식물 아이디 컬렉션
 
@@ -70,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setCardViewAdapter(){
         // adapter 생성
-        mainCardViewAdapter = MainCardViewAdapter(myPlantList)
+        mainCardViewAdapter = MainCardViewAdapter(myPlantList, userId)
 
         // 화면의 viewPager와 연결
         //binding.mainCardViewPager.adapter = cardViewAdapter
@@ -102,7 +106,8 @@ class MainActivity : AppCompatActivity() {
 }
 
 // 더미 데이터로 식물 닉네임만 전달
-class MainCardViewAdapter(val items: List<MainPlantData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainCardViewAdapter(val items: List<MainPlantData>, val userId: Int): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    val assignmentRepository = PutAssignmentRepository()
 
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -190,7 +195,6 @@ class MainCardViewAdapter(val items: List<MainPlantData>): RecyclerView.Adapter<
                 val date = sf.parse(item.plantInfo.plantAdaptTime) //string to Date
                 // 날짜 셋팅
                 val calcDate = (today.time.time - date.time) / (60 * 60 * 24 * 1000)
-                Log.d("test", "$calcDate 일 차이남!!")
                 dday.text = "함께한지 ${calcDate + 1}일 째"
 
                 moveToLogBtn.setOnClickListener {
@@ -199,8 +203,75 @@ class MainCardViewAdapter(val items: List<MainPlantData>): RecyclerView.Adapter<
                     startActivity(itemView.moveToLogBtn.context, intent, null)
                     // finish() 해야 하나?
                 }
-                //nickName.text = item.nickname
-//            Toast.makeText(binding.root as context, "현재 식물: ${item.nickname}", Toast.LENGTH_SHORT).show()
+
+                waterBtn.setOnClickListener {
+                    // 다이얼로그를 생성하기 위해 Builder 클래스 생성자를 이용해 줍니다.
+                    val dialog = AlertDialog.Builder(this.root.context)
+                    dialog.setTitle("물 주기 과제 수행")
+                        .setMessage("물 주기 과제를 완료하시겠어요?")
+                        .setPositiveButton("확인"
+                        ) { _, _ ->
+                            assignmentRepository.putWaterAss(userId, item.plantInfo.myPlantId)
+                        }
+                        .setNegativeButton("취소"
+                        ) { _, _ ->
+                            Toast.makeText(this.root.context, "물 주기 과제를 취소합니다.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    // 다이얼로그를 띄워주기
+                    dialog.show()
+                }
+
+                repotBtn.setOnClickListener {
+                    val dialog = AlertDialog.Builder(this.root.context)
+                    dialog.setTitle("분갈이 과제 수행")
+                        .setMessage("분갈이 과제를 완료하시겠어요?")
+                        .setPositiveButton("확인"
+                        ) { _, _ ->
+                            assignmentRepository.putRepotAss(userId, item.plantInfo.myPlantId)
+                        }
+                        .setNegativeButton("취소"
+                        ) { _, _ ->
+                            Toast.makeText(this.root.context, "분갈이 과제를 취소합니다.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    // 다이얼로그를 띄워주기
+                    dialog.show()
+                }
+
+                careBtn.setOnClickListener {
+                    val dialog = AlertDialog.Builder(this.root.context)
+                    dialog.setTitle("돌보기 과제 수행")
+                        .setMessage("돌보기 과제를 완료하시겠어요?")
+                        .setPositiveButton("확인"
+                        ) { _, _ ->
+                            assignmentRepository.putLookAss(userId, item.plantInfo.myPlantId)
+                        }
+                        .setNegativeButton("취소"
+                        ) { _, _ ->
+                            Toast.makeText(this.root.context, "돌보기 과제를 취소합니다.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    // 다이얼로그를 띄워주기
+                    dialog.show()
+                }
+
+                sunBtn.setOnClickListener {
+                    val dialog = AlertDialog.Builder(this.root.context)
+                    dialog.setTitle("광합성 과제 수행")
+                        .setMessage("광합성 과제를 완료하시겠어요?")
+                        .setPositiveButton("확인"
+                        ) { _, _ ->
+                            assignmentRepository.putSunAss(userId, item.plantInfo.myPlantId)
+                        }
+                        .setNegativeButton("취소"
+                        ) { _, _ ->
+                            Toast.makeText(this.root.context, "광합성 과제를 취소합니다.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    // 다이얼로그를 띄워주기
+                    dialog.show()
+                }
             }
         }
     }

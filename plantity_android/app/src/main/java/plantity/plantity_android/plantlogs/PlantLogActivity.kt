@@ -29,7 +29,7 @@ import kotlin.math.abs
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
     val calendarFragment by lazy { CalendarFragment() }
-    val userId: Int = 222  // 임시 유저 아이디
+    val userId: Int = 220  // 임시 유저 아이디
     val myPlantListRepository = MyPlantsRepository()
 
     var myPlantList = mutableListOf<MyPlantInfo>()  // 내 식물 아이디 컬렉션
@@ -66,37 +66,6 @@ class PlantLogActivity : AppCompatActivity() {
 
         setFragment()  // -> 처음엔 bundle로 보내놓고 calendar fragment 내부에 변수로 저장해두기
         setNavBarFragment("log")
-        // adapter 생성
-//        val cardViewAdapter = CardViewAdapter(myPlantsList as ArrayList<MyPlantInfo>)
-//        Log.d("test", myPlantsList.size.toString())
-//        // 화면의 viewPager와 연결
-//        with(binding.cardViewPager){
-//            adapter = cardViewAdapter
-//            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
-//                // 처음 실행했을 때도 실행됨..
-//                override fun onPageSelected(position: Int){
-//                    // position은 0부터 시작
-//                    Log.d("test", "position changed to $position")
-//                    calendarFragment.handleCardSwipe(position)
-//                }
-//            })
-//
-//            // 미리 보기
-//            offscreenPageLimit = 3
-//            getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
-//
-//            val transform = CompositePageTransformer()
-//            transform.addTransformer(MarginPageTransformer(30))
-//
-//            transform.addTransformer { page, position ->
-//                val r = 1 - abs(position)
-//                page.scaleY = 0.85f + r * 0.15f
-//            }
-//            setPageTransformer(transform)
-//        }
-//        TabLayoutMediator(binding.tabLayout, binding.cardViewPager){ tab, position ->
-//            // 필요한 구현?
-//        }.attach()
 
 //        binding.cardViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
 //            override fun onPageSelected(position: Int) {
@@ -104,10 +73,10 @@ class PlantLogActivity : AppCompatActivity() {
 //                binding.cardViewIndicator.selectDot(position)
 //            }
 //        })
-        //init indicator
-        //Log.d("test", "plant log cardview item count: ${cardViewAdapter.itemCount}")
+//        // init indicator
+//        Log.d("test", "plant log cardview item count: ${cardViewAdapter.itemCount}")
 //        binding.cardViewIndicator.createDotPanel(cardViewAdapter.itemCount, R.drawable.shape_circle_gray, R.drawable.shape_circle_green, 0)
-        // layout manager 설정?
+//        // layout manager 설정?
     }
 
     private fun setPlantList(list: List<MyPlantInfo>){

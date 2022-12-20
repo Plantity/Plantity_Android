@@ -22,6 +22,7 @@ class CalendarFragment : Fragment() {
     private lateinit var myPlantDatas: ArrayList<MyPlantData>
 
     lateinit var currentItem: MyPlantData
+    //lateinit var currentItem: MyPlantLogDetail
     var assignmentDays = mutableListOf<CalendarDay>()
     var selectedDate: CalendarDay = CalendarDay.today()
 

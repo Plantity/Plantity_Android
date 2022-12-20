@@ -8,7 +8,7 @@
         android:id="@+id/textCalendarHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="5/22에 마지막으로 물 줬어요!\n5/17에 분갈이 했어요!"
+        android:text="12/19에 마지막으로 물 줬어요!\n12/7에 분갈이 했어요!"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:background="@drawable/calendar_header_bg"

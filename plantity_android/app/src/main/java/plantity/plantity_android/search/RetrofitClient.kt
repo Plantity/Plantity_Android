@@ -1,6 +1,6 @@
 package plantity.plantity_android.search
 
-import plantity.plantity_android.main.AddPlantService
+import plantity.plantity_android.main.*
 import plantity.plantity_android.plantlogs.MyPlantDetailService
 import plantity.plantity_android.plantlogs.MyPlantLogService
 import plantity.plantity_android.plantlogs.MyPlantService
@@ -20,4 +20,8 @@ object RetrofitClient {
     val myPlantService: MyPlantService = retrofit.create(MyPlantService::class.java)  // 내 식물 리스트 조회하기 인터페이스 구현
     val myPlantDetailService: MyPlantDetailService = retrofit.create(MyPlantDetailService::class.java)  // 내 식물 상세 정보 조회 인터페이스 구현
     val myPlantLogService: MyPlantLogService = retrofit.create(MyPlantLogService::class.java)
+    val waterAssService: WaterAssService = retrofit.create(WaterAssService::class.java)
+    val lookAssService: LookAssService = retrofit.create(LookAssService::class.java)
+    val sunAssService: SunAssService = retrofit.create(SunAssService::class.java)
+    val repotAssService: RepotAssService = retrofit.create(RepotAssService::class.java)
 }

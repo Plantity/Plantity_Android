@@ -25,7 +25,6 @@ import plantity.plantity_android.databinding.ActivityMainBinding
 import plantity.plantity_android.databinding.ItemMainAddCardBinding
 import plantity.plantity_android.databinding.ItemMainCardBinding
 import plantity.plantity_android.plantlogs.MyPlantInfo
-import plantity.plantity_android.plantlogs.PlantLogActivity
 import plantity.plantity_android.search.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,8 +41,6 @@ class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     val userId: Int = 1  // 임시 유저 아이디
     val myPlantListRepository = MyPlantsRepository()
-
-
     var myPlantList = mutableListOf<MainPlantData>()  // 내 식물 아이디 컬렉션
 
     lateinit var mainCardViewAdapter: MainCardViewAdapter
@@ -116,8 +113,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
-
         // 화면의 viewPager와 연결
         //binding.mainCardViewPager.adapter = cardViewAdapter
         with(binding.mainCardViewPager){
@@ -145,13 +140,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("test", "MAIN PAGE, cardview item count: ${mainCardViewAdapter.itemCount}")
     }
-    fun setData(data : UserInfo){
-        main_tv_userName.text=data.nickName
-        main_tv_rank.text=data.rating
-        progressBar?.progress=data.score
 
-
-    }
 
 }
 

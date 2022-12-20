@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.item_main_card.view.*
 import plantity.plantity_android.NavBarFragment
@@ -18,25 +19,63 @@ import plantity.plantity_android.R
 import plantity.plantity_android.databinding.ActivityMainBinding
 import plantity.plantity_android.databinding.ItemMainAddCardBinding
 import plantity.plantity_android.databinding.ItemMainCardBinding
+import plantity.plantity_android.plantlogs.MyPlantInfo
+import plantity.plantity_android.plantlogs.MyPlantsRepository
 import plantity.plantity_android.plantlogs.PlantLogActivity
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.abs
-
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    val userId: Int = 1  // 임시 유저 아이디
+    val myPlantListRepository = MyPlantsRepository()
+
+    var myPlantList = mutableListOf<MainPlantData>()  // 내 식물 아이디 컬렉션
+
+    lateinit var mainCardViewAdapter: MainCardViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        myPlantListRepository.getMyPlantList(userId, ::setPlantList)
         setNavBarFragment("main")
 
+    }
+
+    fun setNavBarFragment(title:String){
+        val bundle = Bundle()
+        bundle.putString("title", title)
+        val navBarFragment : NavBarFragment = NavBarFragment()
+        navBarFragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.nav_bar,navBarFragment)
+        transaction.commit()
+
+//        val mainlogFragment : MainLogFragment = MainLogFragment()
+//        val transaction2 = supportFragmentManager.beginTransaction()
+//        transaction2.add(R.id.mainlog,mainlogFragment)
+//        transaction2.commit()
+    }
+
+    private fun setPlantList(list: List<MyPlantInfo>){
+        myPlantList.addAll(list.map{ MainPlantData(it, USER_PLANT) })
+        myPlantList.add(MainPlantData(MyPlantInfo(-1, "식물추가", "식물추가", "식물추가", "사진"), ADD_PLANT))
+        Log.d("test", "MAIN PAGE, original plant list size: ${list.size}")
+        Log.d("test", "MAIN PAGE, myPlantList size: ${myPlantList.size}")
+        setCardViewAdapter()
+
+    }
+
+    private fun setCardViewAdapter(){
         // adapter 생성
-        val cardViewAdapter = MainCardViewAdapter()
+        mainCardViewAdapter = MainCardViewAdapter(myPlantList)
 
         // 화면의 viewPager와 연결
         //binding.mainCardViewPager.adapter = cardViewAdapter
         with(binding.mainCardViewPager){
-            adapter = cardViewAdapter
+            adapter = mainCardViewAdapter
             offscreenPageLimit = 3
             getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
 
@@ -58,32 +97,12 @@ class MainActivity : AppCompatActivity() {
             // 필요한 구현?
         }.attach()
 
-        Log.d("test", "cardview item count: ${cardViewAdapter.itemCount}")
-    }
-
-    fun setNavBarFragment(title:String){
-        val bundle = Bundle()
-        bundle.putString("title", title)
-        val navBarFragment : NavBarFragment = NavBarFragment()
-        navBarFragment.arguments = bundle
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.nav_bar,navBarFragment)
-        transaction.commit()
-
-//        val mainlogFragment : MainLogFragment = MainLogFragment()
-//        val transaction2 = supportFragmentManager.beginTransaction()
-//        transaction2.add(R.id.mainlog,mainlogFragment)
-//        transaction2.commit()
+        Log.d("test", "MAIN PAGE, cardview item count: ${mainCardViewAdapter.itemCount}")
     }
 }
 
 // 더미 데이터로 식물 닉네임만 전달
-class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val dummy = arrayListOf<MyPlantData>(
-        MyPlantData("순식이", "몬스테라", USER_PLANT),
-        MyPlantData("순새", "선인장", USER_PLANT),
-        MyPlantData("식물추가", "식물추가", ADD_PLANT)
-    )
+class MainCardViewAdapter(val items: List<MainPlantData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -124,24 +143,24 @@ class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (dummy[position].cardType) {
+        when (items[position].cardType) {
             USER_PLANT -> {
-                (holder as MainCardHolder).bind(dummy[position])
+                (holder as MainCardHolder).bind(items[position])
                 //holder.setIsRecyclable(false)
             }
             ADD_PLANT -> {
-                (holder as AddCardHolder).bind(dummy[position])
+                (holder as AddCardHolder).bind(items[position])
                 //(holder as AddCardHolder).setIsRecyclable(false)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return dummy.size
+        return items.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return dummy[position].cardType
+        return items[position].cardType
     }
 
     inner class MainCardHolder(val binding: ItemMainCardBinding) :
@@ -159,9 +178,21 @@ class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //        }
 
         // data: 식물 이름(더미)
-        fun bind(item: MyPlantData) {
+        fun bind(item: MainPlantData) {
             binding.apply {
-                nickName.text = item.nickname
+                nickName.text = item.plantInfo.plantNickName
+                Glide.with(binding.root.context)
+                    .load(item.plantInfo.filePath)
+                    .into(binding.mainPlantImg)
+                // 디데이 계산하기
+                val today = Calendar.getInstance()
+                val sf = SimpleDateFormat("yyyy-MM-dd")  // 단순히 날짜만 확인하기위해 시간을 00:00:00으로 셋팅함.
+                val date = sf.parse(item.plantInfo.plantAdaptTime) //string to Date
+                // 날짜 셋팅
+                val calcDate = (today.time.time - date.time) / (60 * 60 * 24 * 1000)
+                Log.d("test", "$calcDate 일 차이남!!")
+                dday.text = "함께한지 ${calcDate + 1}일 째"
+
                 moveToLogBtn.setOnClickListener {
                     val intent = Intent(itemView.moveToLogBtn.context, PlantLogActivity::class.java)
                     // 인텐트로 현재 식물이 무엇인지 정보 넘겨야 함 -> putExtra()
@@ -183,7 +214,7 @@ class MainCardViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //        }
 
             //        // data: 식물 이름(더미)
-            fun bind(item: MyPlantData) {
+            fun bind(item: MainPlantData) {
                 binding.apply {
                     addPlantBtn.setOnClickListener {
                         Log.d("test", "식물 추가 버튼 클릭됨!")

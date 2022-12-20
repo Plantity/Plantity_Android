@@ -29,7 +29,7 @@ import kotlin.math.abs
 class PlantLogActivity : AppCompatActivity() {
     val binding by lazy { ActivityPlantLogBinding.inflate(layoutInflater) }
     val calendarFragment by lazy { CalendarFragment() }
-    val userId: Int = 222  // 임시 유저 아이디
+    val userId: Int = 1  // 임시 유저 아이디
     val myPlantListRepository = MyPlantsRepository()
 
     var myPlantList = mutableListOf<MyPlantInfo>()  // 내 식물 아이디 컬렉션

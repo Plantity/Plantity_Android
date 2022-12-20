@@ -8,6 +8,7 @@ import plantity.plantity_android.UserService
 import plantity.plantity_android.main.AddPlantService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 // object명 Retrofit으로 변경해서 서버 연동 필요한 모든 곳에서 사용??
 object RetrofitClient {
@@ -21,6 +22,7 @@ object RetrofitClient {
     val addPlantService: AddPlantService = retrofit.create(AddPlantService::class.java)  // 내 식물 등록하기 인터페이스 구현
     val myPlantService: MyPlantService = retrofit.create(MyPlantService::class.java)  // 내 식물 리스트 조회하기 인터페이스 구현
     val userService: UserService = retrofit.create(UserService::class.java) // 유저 정보 조회 인터페이스 구현
+    val myPlantDetailService : MyPlantDetailService= retrofit.create(MyPlantDetailService::class.java)
     val myPlantLogService: MyPlantLogService = retrofit.create(MyPlantLogService::class.java)
     val waterAssService: WaterAssService = retrofit.create(WaterAssService::class.java)
     val lookAssService: LookAssService = retrofit.create(LookAssService::class.java)

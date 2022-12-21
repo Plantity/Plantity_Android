@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_mypage.*
 import kotlinx.android.synthetic.main.item_main_card.view.*
 import plantity.plantity_android.*
 import plantity.plantity_android.databinding.ActivityMainBinding
@@ -50,6 +51,33 @@ class MainActivity : AppCompatActivity() {
 
         myPlantListRepository.getMyPlantList(userId, ::setPlantList)
         setNavBarFragment("main")
+        // 유저 정보 서버 통신
+
+        val call = RetrofitClient.userService.getUser(userId).enqueue(object: Callback<User>{
+            override fun onResponse(  // 통신에 성공한 경우
+                call: Call<User>,
+                response: Response<User>
+            ) {
+                if (response.body()!!.isSuccess) {  // 응답 잘 받은 경우
+                    Log.d("test", "통신 성공 여부: ${response.body()!!.isSuccess}")
+                    Log.d("test", "통신 성공 code: ${response.body()!!.code}")
+                    Log.d("test", "통신 성공 msg: ${response.body()!!.message}")
+                    Log.d("test", "통신 성공 body: ${response.body()!!.result}")
+                    with(response.body()!!.result) {
+                        val arr = response.body()!!.result
+                        binding.mainTvUserName.text=arr.responseDto.nickName
+                        binding.mainTvRank.text=arr.responseDto.rating
+                        binding.progressBar.progress=arr.responseDto.score
+                        binding.percent.text=arr.responseDto.score.toString()
+                    }
+                }
+
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
 
     }
 
@@ -80,38 +108,6 @@ class MainActivity : AppCompatActivity() {
     private fun setCardViewAdapter(){
         // adapter 생성
         mainCardViewAdapter = MainCardViewAdapter(myPlantList, userId)
-
-        // 유저 정보 서버 통신
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://plantity.shop/")
-            .addConverterFactory(GsonConverterFactory.create())  // 데이터를 파싱하는 converter(JSON을 코틀린에서 바로 사용 가능한 데이터 형식으로 변환)
-            .build()
-
-
-        val call = RetrofitClient.userService.getUser(userId)
-        call.enqueue(object: Callback<User> {
-            override fun onResponse(  // 통신에 성공한 경우
-                call: Call<User>,
-                response: Response<User>
-            ) {
-                if(response.body()!!.isSuccess){  // 응답 잘 받은 경우
-                    Log.d("test", "통신 성공 여부: ${response.body()!!.isSuccess}")
-                    Log.d("test", "통신 성공 code: ${response.body()!!.code}")
-                    Log.d("test", "통신 성공 msg: ${response.body()!!.message}")
-                    Log.d("test", "통신 성공 body: ${response.body()!!.result}")
-
-                }
-                else{
-                    Log.d("test", "통신 성공 but 문제, code: ${response.body()!!.code}")
-                    Log.d("test", "통신 성공 but 응답 문제: ${response.body()!!.message}")
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(applicationContext, "통신 실패", Toast.LENGTH_SHORT).show()
-                Log.d("test", "서버 통신 실패, code: ${t.message}")
-            }
-        })
 
         // 화면의 viewPager와 연결
         //binding.mainCardViewPager.adapter = cardViewAdapter

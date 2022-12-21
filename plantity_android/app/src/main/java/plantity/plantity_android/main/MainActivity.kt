@@ -1,13 +1,11 @@
 package plantity.plantity_android.main
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -17,23 +15,20 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.activity_mypage.*
 import kotlinx.android.synthetic.main.item_main_card.view.*
-import plantity.plantity_android.*
+import plantity.plantity_android.NavBarFragment
+import plantity.plantity_android.R
+import plantity.plantity_android.User
 import plantity.plantity_android.databinding.ActivityMainBinding
 import plantity.plantity_android.databinding.ItemMainAddCardBinding
 import plantity.plantity_android.databinding.ItemMainCardBinding
 import plantity.plantity_android.plantlogs.MyPlantInfo
+import plantity.plantity_android.plantlogs.MyPlantsRepository
+import plantity.plantity_android.plantlogs.PlantLogActivity
 import plantity.plantity_android.search.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import plantity.plantity_android.plantlogs.MyPlantsRepository
-import plantity.plantity_android.plantlogs.PlantLogActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
@@ -107,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setCardViewAdapter(){
         // adapter 생성
-        mainCardViewAdapter = MainCardViewAdapter(myPlantList, userId)
+        mainCardViewAdapter = MainCardViewAdapter(myPlantList, userId,binding)
 
         // 화면의 viewPager와 연결
         //binding.mainCardViewPager.adapter = cardViewAdapter
@@ -136,15 +131,12 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("test", "MAIN PAGE, cardview item count: ${mainCardViewAdapter.itemCount}")
     }
-
-
 }
 
 
 // 더미 데이터로 식물 닉네임만 전달
-class MainCardViewAdapter(val items: List<MainPlantData>, val userId: Int): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainCardViewAdapter(val items: List<MainPlantData>, val userId: Int,val binding2: ActivityMainBinding): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val assignmentRepository = PutAssignmentRepository()
-
     // 표시되는 뷰의 정보를 넘겨주기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         // 표시되는 view의 정보를 넘겨줘야 해서 3개의 인자를 전달
@@ -248,11 +240,18 @@ class MainCardViewAdapter(val items: List<MainPlantData>, val userId: Int): Recy
                         .setPositiveButton("확인"
                         ) { _, _ ->
                             assignmentRepository.putWaterAss(userId, item.plantInfo.myPlantId)
+                            val now : String = binding2.percent.text.toString()
+                            var score :Int = now.toInt()
+                            score += 3
+                            binding2.percent.text=score.toString()
                         }
                         .setNegativeButton("취소"
                         ) { _, _ ->
                             Toast.makeText(this.root.context, "물 주기 과제를 취소합니다.", Toast.LENGTH_SHORT)
                                 .show()
+
+
+
                         }
                     // 다이얼로그를 띄워주기
                     dialog.show()

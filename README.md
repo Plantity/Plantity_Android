@@ -1,5 +1,5 @@
 # 🌿 나만의 식물 관리 파트너, Plantity
-<img width="80%" src="https://user-images.githubusercontent.com/81567790/208971246-a535615d-2d0e-4c0a-9e34-0565860369b6.png"/>
+<p align="center"><img width="80%" src="https://user-images.githubusercontent.com/81567790/208971246-a535615d-2d0e-4c0a-9e34-0565860369b6.png"/></p>
 
 ## 💚 Plantity - Android
 |[고예린](https://github.com/rlarkawk194)|[장나리](https://github.com/skfl0282)|[황수연](https://github.com/syhwang1231)|
